@@ -42,3 +42,13 @@ This project requires Ruby 2.7.4.
 1. [Evaluation](./doc/evaluation.md)
 
 [Diagram](https://dbdiagram.io/d/64348ed08615191cfa8ccd17)
+
+## Contributors
+___
+
+- Andrew Bowman  [GitHub](https://github.com/abwmn)
+- Thomas Hawley [GitHub](https://github.com/thawley2)
+- Nick Sacco [GitHub](https://github.com/sicknacco)
+- Amy Spears [GitHub](https://github.com/amspears007)
+
+
