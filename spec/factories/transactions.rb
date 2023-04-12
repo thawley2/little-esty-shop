@@ -6,9 +6,5 @@ FactoryBot.define do
     result { ["success", "failed"].sample }
     created_at { Faker::Time.between(from: 2.years.ago, to: Time.now) }
     updated_at { created_at }
-
-    trait :successful do
-      result { "success" }
-    end
   end
 end

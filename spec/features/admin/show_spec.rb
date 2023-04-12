@@ -4,6 +4,10 @@
 # 20: Then I see a link to the admin merchants index (/admin/merchants)
 # And I see a link to the admin invoices index (/admin/invoices)
 RSpec.describe 'Admin Show Dashboard Page', type: :feature do
+  before(:each) do
+    test_data
+  end
+  
   describe "As an admin visiting '/admin'" do
     it 'I see a header indicating I am on the admin dashboard' do
       visit admin_dashboard_path
