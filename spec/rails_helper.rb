@@ -1,3 +1,46 @@
+def test_data
+  @merchant = create(:merchant)
+
+  @item1 = create(:item, merchant: @merchant)
+  @item2 = create(:item, merchant: @merchant)
+  @item3 = create(:item, merchant: @merchant)
+  @item4 = create(:item, merchant: @merchant)
+  @item5 = create(:item, merchant: @merchant)
+
+  @customer1 = create(:customer)
+  @customer2 = create(:customer)
+  @customer3 = create(:customer)
+  @customer4 = create(:customer)
+  @customer5 = create(:customer)
+  @customer6 = create(:customer)
+
+  @invoice1 = create(:invoice, customer: @customer1)
+  @invoice2 = create(:invoice, customer: @customer1)
+  @invoice3 = create(:invoice, customer: @customer1)
+  @invoice4 = create(:invoice, customer: @customer2)
+  @invoice5 = create(:invoice, customer: @customer2)
+  @invoice6 = create(:invoice, customer: @customer3)
+  @invoice7 = create(:invoice, customer: @customer3)
+  @invoice8 = create(:invoice, customer: @customer4)
+
+  @transaction1 = create(:transaction, invoice: @invoice1)
+  @transaction2 = create(:transaction, invoice: @invoice1)
+  @transaction3 = create(:transaction, invoice: @invoice1)
+  @transaction4 = create(:transaction, invoice: @invoice2)
+  @transaction5 = create(:transaction, invoice: @invoice2)
+  @transaction6 = create(:transaction, invoice: @invoice3)
+
+  @inv_itm1 = create(:invoice_item, item: @item1, invoice: @invoice1)
+  @inv_itm2 = create(:invoice_item, item: @item1, invoice: @invoice2)
+  @inv_itm3 = create(:invoice_item, item: @item2, invoice: @invoice2)
+  @inv_itm4 = create(:invoice_item, item: @item2, invoice: @invoice3)
+  @inv_itm5 = create(:invoice_item, item: @item2, invoice: @invoice3)
+  @inv_itm6 = create(:invoice_item, item: @item3, invoice: @invoice3)
+  
+  
+
+
+end
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
 SimpleCov.start
