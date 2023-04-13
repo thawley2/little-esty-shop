@@ -16,5 +16,6 @@ class Merchant < ApplicationRecord
     self.items.joins(:invoice_items)
     .where("status!= 2")
     .select("items.*, invoice_items.invoice_id")
+    .distinct
   end
 end
