@@ -9,3 +9,8 @@
   <li><%= customer.first_name %> <%= customer.last_name %> - <%= customer.transaction_count %> purchases</li>
 <% end %>
 </ol>
+
+<h3>Items Ready To Ship</h3>
+<% @merchant.item_not_shipped.each do |item| %>
+  <p><%= item.name %> - #<%= item.invoice_id %></p>
+<% end %>
