@@ -22,17 +22,20 @@ def test_data
   @invoice6 = create(:invoice, customer: @customer6)
   
 
-  @transaction1 = create(:transaction, result: 'success', invoice: @invoice1)
-  @transaction2 = create(:transaction, result: 'success', invoice: @invoice1)
-  @transaction3 = create(:transaction, result: 'success', invoice: @invoice1)
-  @transaction4 = create(:transaction, result: 'success', invoice: @invoice1)
+  @transaction1 = create(:transaction, result: 'success', invoice: @invoice6)
+  @transaction2 = create(:transaction, result: 'success', invoice: @invoice6)
+  @transaction3 = create(:transaction, result: 'success', invoice: @invoice6)
+  @transaction4 = create(:transaction, result: 'success', invoice: @invoice6)
   @transaction5 = create(:transaction, result: 'success', invoice: @invoice2)
   @transaction6 = create(:transaction, result: 'success', invoice: @invoice2)
   @transaction7 = create(:transaction, result: 'success', invoice: @invoice2)
   @transaction8 = create(:transaction, result: 'success', invoice: @invoice3)
   @transaction9 = create(:transaction, result: 'success', invoice: @invoice3)
   @transaction10 = create(:transaction, result: 'success', invoice: @invoice4)
+  @transaction14 = create(:transaction, result: 'success', invoice: @invoice4)
   @transaction11 = create(:transaction, result: 'success', invoice: @invoice5)
+  @transaction12 = create(:transaction, result: 'success', invoice: @invoice5)
+  @transaction13 = create(:transaction, result: 'success', invoice: @invoice1)
 
   @inv_itm1 = create(:invoice_item, item: @item1, invoice: @invoice1)
   @inv_itm2 = create(:invoice_item, item: @item1, invoice: @invoice2)
@@ -40,6 +43,7 @@ def test_data
   @inv_itm4 = create(:invoice_item, item: @item2, invoice: @invoice4)
   @inv_itm5 = create(:invoice_item, item: @item2, invoice: @invoice5)
   @inv_itm6 = create(:invoice_item, item: @item3, invoice: @invoice6)
+ 
   
   
 
