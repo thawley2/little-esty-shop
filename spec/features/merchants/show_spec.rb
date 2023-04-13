@@ -73,6 +73,14 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
           expect(page).to have_link("#{@invoice4.id}")
           expect(page).to have_link("#{@invoice5.id}")
         end
+
+        it 'has a link to the merchant invoice show page' do
+          visit merchant_dashboard_path(@merchant)
+
+          click_link("#{@invoice2.id}")
+
+          expect(current_path).to eq(merchant_invoice_path(@merchant.id, @invoice2.id))
+        end
       end
     end
   end
