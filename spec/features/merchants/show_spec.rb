@@ -68,10 +68,10 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
           expect(page).to have_content("#{@item3.name} - Invoice ##{@invoice5.id}")
           expect(page).to_not have_content("#{@item3.name} - Invoice ##{@invoice6.id}")
           expect(page).to_not have_content("#{@item1.name} - Invoice ##{@invoice1.id}")
-          expect(page).to have_link(@invoice2.id)
-          expect(page).to have_link(@invoice3.id)
-          expect(page).to have_link(@invoice4.id)
-          expect(page).to have_link(@invoice5.id)
+          expect(page).to have_link("#{@invoice2.id}")
+          expect(page).to have_link("#{@invoice3.id}")
+          expect(page).to have_link("#{@invoice4.id}")
+          expect(page).to have_link("#{@invoice5.id}")
         end
       end
     end
