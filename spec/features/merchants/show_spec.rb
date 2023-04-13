@@ -60,7 +60,7 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
       describe 'shows a list of the names of all of my items that have been ordered and have not yet been shipped,' do
         it "Next to each Item I see the id of the invoice that ordered my item And each invoice id is a link to my merchant's invoice show page" do
           visit merchant_dashboard_path(@merchant)
-
+          
           expect(page).to have_content("Items Ready To Ship")
           expect(page).to have_content("#{@item1.name} - Invoice ##{@invoice2.id}")
           expect(page).to have_content("#{@item2.name} - Invoice ##{@invoice3.id}")
