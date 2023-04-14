@@ -13,9 +13,10 @@ class Merchant < ApplicationRecord
   end
 
   def items_not_shipped
-    self.items.joins(:invoice_items)
-    .where("status!= 2")
-    .select("items.*, invoice_items.invoice_id")
+    self.items.joins(:invoices)
+    .where("invoice_items.status= 1")
+    .select("items.*, invoice_items.invoice_id, invoices.created_at as invoice_creation")
     .distinct
+    .order(invoice_creation: :desc)
   end
 end
