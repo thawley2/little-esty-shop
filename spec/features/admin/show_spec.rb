@@ -65,11 +65,9 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
       save_and_open_page
 
       within 'section#incomplete-invoices' do
-        invoices = Invoice.incomplete_invoices
-          expect(page).to have_content(@invoice2.format_date
-
-          expect(Invoice.incomplete_invoices.first.created_at.strftime("%A, %B %d, %Y")).to appear_before(Invoice.incomplete_invoices.second.created_at.strftime("%A, %B %d, %Y"))
-          expect(Invoice.incomplete_invoices.second.created_at.strftime("%A, %B %d, %Y")).to appear_before(Invoice.incomplete_invoices.third.created_at.strftime("%A, %B %d, %Y"))
+          expect(page).to have_content(@invoice2.format_date)
+          expect(Invoice.incomplete_invoices[0].format_date).to appear_before(Invoice.incomplete_invoices[1].format_date)
+          expect(Invoice.incomplete_invoices[1].format_date).to appear_before(Invoice.incomplete_invoices[2].format_date)
       end
     end
   end
