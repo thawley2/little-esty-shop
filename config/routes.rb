@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   resources :merchants, only: [] do
     resources :invoices, only: [:index, :show], controller: 'merchants/invoices'
   end
+
+  namespace :admin do
+    resources :invoices, only: [:show]
+  end
 end
