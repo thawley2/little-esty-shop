@@ -42,6 +42,7 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
       end
     end
 
+  describe 'Incomplete Invoices Section' do
     it 'I see a section for "Incomplete Invoices" with ids of all unshipped invoices as links to invoice admin show page' do
       visit admin_dashboard_path
 
@@ -55,6 +56,18 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
         
         click_link("Invoice: #{@invoice2.id}")
         expect(current_path).to eq("/admin/invoices/#{@invoice2.id}")
+      end
+    end
+  end
+
+    it 'In the section for "Incomplete Invoices" and next to each invoice id I see the date formatted that the invoice was created at and the list is ordered from oldest to newest ' do
+      visit admin_dashboard_path
+      save_and_open_page
+
+      within 'section#incomplete-invoices' do
+          expect(page).to have_content(@invoice2.format_date)
+          expect(Invoice.incomplete_invoices[0].format_date).to appear_before(Invoice.incomplete_invoices[1].format_date)
+          expect(Invoice.incomplete_invoices[1].format_date).to appear_before(Invoice.incomplete_invoices[2].format_date)
       end
     end
   end
