@@ -42,6 +42,7 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
       end
     end
 
+  describe 'Incomplete Invoices Section' do
     it 'I see a section for "Incomplete Invoices" with ids of all unshipped invoices as links to invoice admin show page' do
       visit admin_dashboard_path
 
@@ -56,6 +57,14 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
         click_link("Invoice: #{@invoice2.id}")
         expect(current_path).to eq("/admin/invoices/#{@invoice2.id}")
       end
+    end
+  end
+
+    it 'In the section for "Incomplete Invoices" and next to each invoice id I see the date that the invoice was created ' do
+      visit admin_dashboard_path
+      save_and_open_page
+
+          expect(page).to have_content(@invoice2.created_at.strftime("%A %B %d %Y"))
     end
   end
 end
