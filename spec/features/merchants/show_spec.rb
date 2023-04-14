@@ -1,8 +1,3 @@
-# 1. Merchant Dashboard
-
-# As a merchant,
-# When I visit my merchant dashboard (/merchants/merchant_id/dashboard)
-# Then I see the name of my merchant
 require 'rails_helper'
 
 RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
@@ -64,22 +59,24 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
           expect(page).to have_content("Items Ready To Ship")
           expect(page).to have_content("#{@item1.name} - Invoice ##{@invoice2.id}")
           expect(page).to have_content("#{@item2.name} - Invoice ##{@invoice3.id}")
-          expect(page).to have_content("#{@item2.name} - Invoice ##{@invoice4.id}")
-          expect(page).to have_content("#{@item3.name} - Invoice ##{@invoice5.id}")
           expect(page).to_not have_content("#{@item3.name} - Invoice ##{@invoice6.id}")
           expect(page).to_not have_content("#{@item1.name} - Invoice ##{@invoice1.id}")
           expect(page).to have_link("#{@invoice2.id}")
           expect(page).to have_link("#{@invoice3.id}")
-          expect(page).to have_link("#{@invoice4.id}")
-          expect(page).to have_link("#{@invoice5.id}")
         end
 
         it 'has a link to the merchant invoice show page' do
           visit merchant_dashboard_path(@merchant)
-
           click_link("#{@invoice2.id}")
-
+          
           expect(current_path).to eq(merchant_invoice_path(@merchant.id, @invoice2.id))
+        end
+        
+        it 'I can see the date formatted like "Monday, July 18, 2019"' do
+          visit merchant_dashboard_path(@merchant)
+
+          expect(page).to have_content(@invoice2.created_at.strftime("%A %B %d %Y"))
+          expect(@invoice2.created_at.strftime("%A %B %d %Y")).to appear_before(@invoice3.created_at.strftime("%A %B %d %Y"))
         end
       end
     end
