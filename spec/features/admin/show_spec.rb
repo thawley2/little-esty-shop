@@ -66,7 +66,7 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
 
       within 'section#incomplete-invoices' do
         invoices = Invoice.incomplete_invoices
-          expect(page).to have_content(@invoice2.created_at.strftime("%A, %B %d, %Y"))
+          expect(page).to have_content(@invoice2.format_date
 
           expect(Invoice.incomplete_invoices.first.created_at.strftime("%A, %B %d, %Y")).to appear_before(Invoice.incomplete_invoices.second.created_at.strftime("%A, %B %d, %Y"))
           expect(Invoice.incomplete_invoices.second.created_at.strftime("%A, %B %d, %Y")).to appear_before(Invoice.incomplete_invoices.third.created_at.strftime("%A, %B %d, %Y"))
