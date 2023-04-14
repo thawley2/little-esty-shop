@@ -29,6 +29,7 @@ RSpec.describe Merchant, type: :model do
     end
 
     it '#items_not_shipped has the attribute of invoice_creation' do
+      #need to refactor with updated created_at attribute for these invoices
       expect(@merchant.items_not_shipped.first.invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice2.created_at.strftime("%A %B %d %Y"))
       expect(@merchant.items_not_shipped[1].invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice3.created_at.strftime("%A %B %d %Y"))
     end
