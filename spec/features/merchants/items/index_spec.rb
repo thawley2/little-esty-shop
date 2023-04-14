@@ -8,7 +8,7 @@ RSpec.describe '/merchants/:id/items' do
   describe 'When I visit my merchant items index page' do
     it 'I see a list of the names of all of my items and not other merchant items' do
       visit merchant_items_path(@merchant)
-save_and_open_page
+# save_and_open_page
       expect(page).to have_content(@merchant.name)
       expect(page).to have_content(@item1.name)
       expect(page).to have_content(@item2.name)
