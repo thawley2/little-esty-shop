@@ -23,7 +23,7 @@ RSpec.describe Merchant, type: :model do
     end
 
     it '#items_not_shipped' do
-      expect(@merchant.items_not_shipped).to eq([@item1, @item2])
+      expect(@merchant.items_not_shipped).to match_array([@item1, @item2])
       expect(@merchant.items_not_shipped.first.invoice_id).to eq(@invoice2.id)
       expect(@merchant.items_not_shipped[1].invoice_id).to eq(@invoice3.id)
     end
