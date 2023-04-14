@@ -45,7 +45,7 @@ def test_data
   @inv_itm6 = create(:invoice_item, item: @item3, invoice: @invoice6, status: 2)
 end
 
-def merchant2
+def merchant2_test_data
   @merchant2 = create(:merchant)
 
   @item6 = create(:item, merchant: @merchant2)
