@@ -64,7 +64,7 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
       visit admin_dashboard_path
       save_and_open_page
 
-          expect(page).to have_content(@invoice2.created_at.strftime("%A %B %d %Y"))
+          expect(page).to have_content(@invoice2.created_at.strftime("%A, %B %d, %Y"))
     end
   end
 end
