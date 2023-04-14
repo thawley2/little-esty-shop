@@ -41,5 +41,22 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
         expect(@customer5.first_name).to_not appear_before(@customer2.first_name)
       end
     end
+
+    it 'I see a section for "Incomplete Invoices" with ids of all unshipped invoices as links to invoice admin show page' do
+      visit admin_dashboard_path
+
+      within 'section#incomplete-invoices' do
+        expect(page).to have_content("Incomplete Invoices")
+
+        expect(page).to have_link("Invoice: #{@invoice2.id}")
+        expect(page).to have_link("Invoice: #{@invoice3.id}")
+        expect(page).to have_link("Invoice: #{@invoice4.id}")
+        expect(page).to have_link("Invoice: #{@invoice5.id}")
+        
+        click_link("Invoice: #{@invoice2.id}")
+        expect(current_path).to eq("/admin/invoices/#{@invoice2.id}")
+      end
+    end
   end
 end
+
