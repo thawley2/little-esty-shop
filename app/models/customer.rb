@@ -3,6 +3,10 @@ class Customer < ApplicationRecord
   has_many :transactions, through: :invoices
   has_many :items, through: :invoices
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def self.top_five_customers
     joins(invoices: :transactions)
       .where(transactions: { result: 'success' })

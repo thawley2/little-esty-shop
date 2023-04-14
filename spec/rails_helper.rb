@@ -37,12 +37,12 @@ def test_data
   @transaction12 = create(:transaction, result: 'success', invoice: @invoice5)
   @transaction13 = create(:transaction, result: 'success', invoice: @invoice1)
 
-  @inv_itm1 = create(:invoice_item, item: @item1, invoice: @invoice1)
-  @inv_itm2 = create(:invoice_item, item: @item1, invoice: @invoice2)
-  @inv_itm3 = create(:invoice_item, item: @item2, invoice: @invoice3)
-  @inv_itm4 = create(:invoice_item, item: @item2, invoice: @invoice4)
-  @inv_itm5 = create(:invoice_item, item: @item2, invoice: @invoice5)
-  @inv_itm6 = create(:invoice_item, item: @item3, invoice: @invoice6)
+  @inv_itm1 = create(:invoice_item, item: @item1, invoice: @invoice1, status: 2)
+  @inv_itm2 = create(:invoice_item, item: @item1, invoice: @invoice2, status: 1)
+  @inv_itm3 = create(:invoice_item, item: @item2, invoice: @invoice3, status: 1)
+  @inv_itm4 = create(:invoice_item, item: @item2, invoice: @invoice4, status: 0)
+  @inv_itm5 = create(:invoice_item, item: @item3, invoice: @invoice5, status: 0)
+  @inv_itm6 = create(:invoice_item, item: @item3, invoice: @invoice6, status: 2)
  
   
   
