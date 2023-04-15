@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Merchant Index' do
   describe 'As an admin' do
-    let!(:merchant1) {Merchant.create!(name:'Steve', status: 'disabled')}
-    let!(:merchant2) {Merchant.create!(name:'Fred', status: 'enabled')}
+    let!(:merchant1) {Merchant.create!(name:'Steve', enabled: false)}
+    let!(:merchant2) {Merchant.create!(name:'Fred', enabled: true)}
   
 
     describe 'When I visit the admin merchants index' do
@@ -31,23 +31,23 @@ RSpec.describe 'Merchant Index' do
         visit admin_merchants_path
         save_and_open_page
       
-        within ".merchant_names-#{merchant1.id}" do
+        within ".merchant#{merchant1.id}" do
           click_button "Enable Merchant"
         end
         expect(current_path).to eq(admin_merchants_path)
         expect(page).to have_content("Steve is Enabled")
 
-        within ".merchant_names-#{merchant2.id}" do
+        within ".merchant#{merchant2.id}" do
           click_button "Disable Merchant"
         end
         expect(current_path).to eq(admin_merchants_path)
         expect(page).to have_content("Fred is Disabled")
       
-        within ".merchant_names-#{merchant1.id}" do
+        within ".merchant#{merchant1.id}" do
           click_button "Disable Merchant"
         end
 
-        within ".merchant_names-#{merchant2.id}" do
+        within ".merchant#{merchant2.id}" do
           click_button "Enable Merchant"
         end
       end
