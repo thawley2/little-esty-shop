@@ -19,7 +19,6 @@ RSpec.describe '/merchants/:merchant_id/items/:id/edit' do
       
       fill_in 'Name', with: 'Super Soaker'
       
-      save_and_open_page
       click_button("Save Changes")
       expect(current_path).to eq(merchant_item_path(@merchant, @item1))
     end
