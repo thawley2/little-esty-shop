@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Customer, type: :model do
   it { should have_many(:invoices) }
 
-before(:each) do
+before(:all) do
   test_data
 end
 

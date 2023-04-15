@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin Show Dashboard Page', type: :feature do
-  before(:each) do
+  before(:all) do
     test_data
   end
   

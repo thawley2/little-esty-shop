@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
-  before(:each) do
+  before(:all) do
     test_data
   end
   it { should belong_to(:customer) }
