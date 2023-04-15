@@ -9,12 +9,8 @@
 <ul style="list-style-type:none">
   <% @merchant.enabled_items.each do |item| %>
   <div id="item_<%=item.id %>">
-    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %> 
-    <%= form_with model: [@merchant, item], local: true do |f| %>
-      <%= f.hidden_field :status, value: 'disabled' %>
-      <%= f.submit 'Disable' %>
-    <% end %>
-    </li></p>
+    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %> </li></p>
+    <%= render partial: 'enable_disable', locals: {model: [@merchant, item], value: 'disabled', button_text: 'Disable'} %>
   </div>
   <% end %>
 </ul>
@@ -24,12 +20,8 @@
 <ul style="list-style-type:none">
   <% @merchant.disabled_items.each do |item| %>
   <div id="item_<%=item.id %>">
-    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %> 
-    <%= form_with model: [@merchant, item], local: true do |f| %>
-      <%= f.hidden_field :status, value: 'enabled' %>
-      <%= f.submit 'Enable' %>
-    <% end %>
-    </li></p>
+    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %></li></p>
+    <%= render partial: 'enable_disable', locals: {model: [@merchant, item], value: 'enabled', button_text: 'Enable'} %>
   </div>
   <% end %>
 </ul>
