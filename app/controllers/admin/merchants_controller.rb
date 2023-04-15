@@ -18,7 +18,6 @@ class Admin::MerchantsController < ApplicationController
       @merchant.switch_enabled
       redirect_to admin_merchants_path, notice: "#{@merchant.name} is #{@merchant.enabled_text}"
 
-
     elsif @merchant.update(merchant_params)
       flash[:success] = "#{@merchant.name} was successfully updated."
       redirect_to admin_merchant_path(@merchant)
