@@ -12,12 +12,9 @@ RSpec.describe Invoice, type: :model do
 
   it { should define_enum_for(:status).with_values('in progress': 0, 'completed': 1, 'cancelled': 2) }
 
-  it 'checks unshipped items' do
+  it 'returns #incomplete_invoices' do
     expect(Invoice.incomplete_invoices).to match_array([@invoice2, @invoice3, @invoice4, @invoice5])
-  end
-
-  xit '#incomplete invoices attribute of invoice_creation' do
-    expect(Invoice.incomplete_invoices.first.created_at.strftime("%A %B %d %Y")).to eq(@invoice2.created_at.strftime("%A %B %d %Y"))
+    expect(Invoice.incomplete_invoices.any?{|inv| inv.status == 2}).to eq(false)
   end
 
   describe '#format_date' do
