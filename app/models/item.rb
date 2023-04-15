@@ -4,5 +4,5 @@ class Item < ApplicationRecord
   has_many :invoice_items
   has_many :invoices, through: :invoice_items
 
-  enum status: { 'enabled': 0, 'disabled': 1 }
+  enum status: { 'enabled': 1, 'disabled': 0 }
 end

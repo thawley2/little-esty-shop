@@ -8,7 +8,7 @@ RSpec.describe '/merchants/:id/items', type: :feature do
   describe 'When I visit my merchant items index page' do
     it 'I see a list of the names of all of my items and not other merchant items' do
       visit merchant_items_path(@merchant)
-# save_and_open_page
+
       expect(page).to have_content(@merchant.name)
       expect(page).to have_content(@item1.name)
       expect(page).to have_content(@item2.name)
@@ -41,9 +41,8 @@ RSpec.describe '/merchants/:id/items', type: :feature do
 
     describe 'I see a button next to each item to enable or disable' do
       it 'where the button is enabled for disabled items' do
-        @item2.update(status: 1)
-        @item4.update(status: 1)
-        @item5.update(status: 1)
+        @item1.update(status: 1)
+        @item3.update(status: 1)
         visit merchant_items_path(@merchant)
 
         expect(page).to have_content('Disabled Items')
@@ -69,14 +68,12 @@ RSpec.describe '/merchants/:id/items', type: :feature do
         within "#item_#{@item3.id}" do
           expect(page).to_not have_button("Enable")
         end
-        
-
       end
 
       it 'where the button is disabled for enabled items' do
-        @item2.update(status: 1)
-        @item4.update(status: 1)
-        @item5.update(status: 1)
+        @item1.update(status: 1)
+        @item3.update(status: 1)
+
         visit merchant_items_path(@merchant)
 
         expect(page).to have_content('Enabled Items')
@@ -85,14 +82,26 @@ RSpec.describe '/merchants/:id/items', type: :feature do
           click_button('Disable')
           expect(current_path).to eq(merchant_items_path(@merchant))
           expect(page).to have_button("Enable")
-
         end
+
         within "#item_#{@item3.id}" do
           expect(page).to have_button("Disable")
         end
+        
         within "#item_#{@item5.id}" do
           expect(page).to_not have_button("Disable")
         end
+      end
+    end
+
+    describe 'I see a link to create a new item.' do
+      it 'When I click on the link, I am taken to a form that allows me to add item information.' do
+        visit merchant_items_path(@merchant)
+
+        expect(page).to have_link("New Item")
+        click_link("New Item")
+
+        expect(current_path).to eq(new_merchant_item_path(@merchant))
       end
     end
   end
