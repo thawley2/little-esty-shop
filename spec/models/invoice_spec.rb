@@ -16,7 +16,7 @@ RSpec.describe Invoice, type: :model do
     expect(Invoice.incomplete_invoices).to match_array([@invoice2, @invoice3, @invoice4, @invoice5])
   end
 
-  xit '#incomplete invoices attribute of invoice_creation' do
+  it '#incomplete invoices attribute of invoice_creation' do
     expect(Invoice.incomplete_invoices.first.created_at.strftime("%A %B %d %Y")).to eq(@invoice2.created_at.strftime("%A %B %d %Y"))
   end
 
