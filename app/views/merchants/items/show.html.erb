@@ -1,0 +1,8 @@
+<h1>Little Esty Shop</h1>
+
+<h2><%= @merchant.name %></h2>
+
+<h2><b><%= @item.name %></b></h2>
+
+<p>Description: <%= @item.description %></p>
+<p>Current Price: <%= number_to_currency(@item.unit_price/100) %>

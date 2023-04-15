@@ -43,10 +43,16 @@ def test_data
   @inv_itm4 = create(:invoice_item, item: @item2, invoice: @invoice4, status: 0)
   @inv_itm5 = create(:invoice_item, item: @item3, invoice: @invoice5, status: 0)
   @inv_itm6 = create(:invoice_item, item: @item3, invoice: @invoice6, status: 2)
- 
-  
-  
+end
 
+def merchant2_test_data
+  @merchant2 = create(:merchant)
+
+  @item6 = create(:item, merchant: @merchant2)
+  @item7 = create(:item, merchant: @merchant2)
+  @item8 = create(:item, merchant: @merchant2)
+  @item9 = create(:item, merchant: @merchant2)
+  @item10 = create(:item, merchant: @merchant2)
 
 end
 # This file is copied to spec/ when you run 'rails generate rspec:install'
