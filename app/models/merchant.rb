@@ -21,11 +21,11 @@ class Merchant < ApplicationRecord
   end
 
   def disabled_items
-    items.where(status: 1)
+    items.where(status: 0)
   end
 
   def enabled_items
-    items.where(status: 0)
+    items.where(status: 1)
   end
 
   def switch_enabled
