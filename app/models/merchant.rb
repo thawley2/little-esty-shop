@@ -12,7 +12,7 @@ class Merchant < ApplicationRecord
     .limit(5)
   end
 
-  def items_not_shipped
+  def items_ready_to_ship
     self.items.joins(:invoices)
     .where("invoice_items.status= 1")
     .select("items.*, invoice_items.invoice_id, invoices.created_at as invoice_creation")
