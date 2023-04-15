@@ -15,11 +15,11 @@ RSpec.describe '/merchants/:merchant_id/items/:id/edit' do
       expect(page).to have_content(@merchant.name)
       expect(page).to have_field('Name', with: @item1.name)
       expect(page).to have_field('Description', with: @item1.description)
-      expect(page).to have_field('Unit price', with: 15000)
+      expect(page).to have_field('Unit Price', with: 15000)
       
       fill_in 'Name', with: 'Super Soaker'
-      
-      click_button("Save Changes")
+
+      click_button("Submit")
       expect(current_path).to eq(merchant_item_path(@merchant, @item1))
     end
   end
