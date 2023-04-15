@@ -12,9 +12,11 @@ RSpec.describe 'Edit Merchant Show Page' do
     
       expect(current_path).to eq(admin_merchant_path(merchant))
       expect(page).to have_content("Andrew")
-      end
+      expect(page).to have_content("Andrew was successfully updated.")
+      
     end
   end
+end
   # As an admin,
 # When I visit a merchant's admin show page
 # Then I see a link to update the merchant's information.
