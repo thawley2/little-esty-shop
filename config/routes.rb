@@ -13,11 +13,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :invoices, only: [:show]
-    resources :merchants, only: [:index, :show, :edit, :update], controller: 'merchants' do
-      member do
-        patch :switch_enabled
-        
-      end
-    end
+    resources :merchants, only: [:index, :show, :edit, :update], controller: 'merchants' 
   end
 end
