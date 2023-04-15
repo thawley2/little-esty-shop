@@ -52,5 +52,14 @@ RSpec.describe Merchant, type: :model do
       @item5.update(status: 1)
       expect(@merchant.enabled_items).to match_array([@item1, @item3])
     end
+
+    describe '#switch_enable' do
+      it 'switches the boolean status of the enabled attribute' do
+      
+        expect(@merchant.enabled?)
+        @merchant.switch_enabled
+        expect(!@merchant.enabled?)
+      end
+    end
   end
 end

@@ -1,7 +1,11 @@
 <h1>Merchants Index</h1>
 
 <div class="merchant_names">
+
   <% @merchants.each do |merchant| %>
-    <%= link_to merchant.name, admin_merchant_path(merchant) %><br>
+    <div class="merchant<%= merchant.id%>">
+      <%= link_to merchant.name, admin_merchant_path(merchant) %><br>
+      <%= button_to merchant.button_text, admin_merchant_path(merchant, switch_enabled: true), method: :patch %>
+    </div>
   <% end %>
 </div>
