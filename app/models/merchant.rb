@@ -27,4 +27,24 @@ class Merchant < ApplicationRecord
   def enabled_items
     items.where(status: 1)
   end
+
+  def switch_enabled
+    update(enabled: !enabled)
+  end
+
+  def self.enabled
+    where(enabled: :true)
+  end
+
+  def self.disabled
+    where(enabled: :false)
+  end
+
+  def button_text
+    enabled ? "Disable Merchant" : "Enable Merchant"
+  end
+
+  def enabled_text
+    enabled ? "Enabled" : "Disabled"
+  end
 end
