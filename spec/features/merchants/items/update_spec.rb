@@ -13,9 +13,10 @@ RSpec.describe '/merchants/:merchant_id/items/:id/edit' do
 
       expect(page).to have_content("Little Esty Shop")
       expect(page).to have_content(@merchant.name)
-      expect(page).to have_content(@item1.name)
-      expect(page).to have_content("Description: #{@item1.description}")
-      expect(page).to have_content("Current Price: $150.00")
+      expect(page).to have_field('Name', with: @item1.name)
+      expect(page).to have_field('Description', with: @item1.description)
+      save_and_open_page
+      expect(page).to have_field('Unit Price', with: 150000)
 
       fill_in 'Name', with: 'Super Soaker'
 
