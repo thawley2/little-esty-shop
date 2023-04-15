@@ -25,8 +25,7 @@ RSpec.describe '/merchants/:id/items/new', type: :feature do
 
         expect(current_path).to eq(merchant_items_path(@merchant))
         new_item = Item.where(name: 'Soggy Bottoms')
-
-        within "#item_#{new_item.id}" do
+        within "#item_#{new_item.first.id}" do
           expect(page).to have_button("Enable")
           expect(page).to have_content("Soggy Bottoms")
         end
