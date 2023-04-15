@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Merchant, type: :model do
-  before(:all) do
+  before(:each) do
     test_data
   end
   it { should have_many(:items) }

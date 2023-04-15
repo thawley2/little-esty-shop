@@ -4,7 +4,7 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
   let!(:merchant1) {Merchant.create!(name:'Steve')}
   let!(:merchant2) {Merchant.create!(name:'Fred')}
 
-  before(:all) do
+  before(:each) do
     test_data
   end
 
