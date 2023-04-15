@@ -38,5 +38,62 @@ RSpec.describe '/merchants/:id/items', type: :feature do
       expect(current_path).to eq(merchant_item_path(@merchant, @item1))
       end
     end
+
+    describe 'I see a button next to each item to enable or disable' do
+      it 'where the button is enabled for disabled items' do
+        @item2.update(status: 1)
+        @item4.update(status: 1)
+        @item5.update(status: 1)
+        visit merchant_items_path(@merchant)
+
+        expect(page).to have_content('Disabled Items')
+        within "#item_#{@item2.id}" do
+          expect(page).to have_button("Enable")
+          click_button('Enable')
+          expect(current_path).to eq(merchant_items_path(@merchant))
+          expect(page).to have_button("Disable")
+        end
+
+        within "#item_#{@item4.id}" do
+          expect(page).to have_button("Enable")
+        end
+
+        within "#item_#{@item5.id}" do
+          expect(page).to have_button("Enable")
+        end
+
+        within "#item_#{@item1.id}" do
+          expect(page).to_not have_button("Enable")
+        end
+
+        within "#item_#{@item3.id}" do
+          expect(page).to_not have_button("Enable")
+        end
+        
+
+      end
+
+      it 'where the button is disabled for enabled items' do
+        @item2.update(status: 1)
+        @item4.update(status: 1)
+        @item5.update(status: 1)
+        visit merchant_items_path(@merchant)
+
+        expect(page).to have_content('Enabled Items')
+        within "#item_#{@item1.id}" do
+          expect(page).to have_button("Disable")
+          click_button('Disable')
+          expect(current_path).to eq(merchant_items_path(@merchant))
+          expect(page).to have_button("Enable")
+
+        end
+        within "#item_#{@item3.id}" do
+          expect(page).to have_button("Disable")
+        end
+        within "#item_#{@item5.id}" do
+          expect(page).to_not have_button("Disable")
+        end
+      end
+    end
   end
 end

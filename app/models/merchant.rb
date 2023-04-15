@@ -12,11 +12,19 @@ class Merchant < ApplicationRecord
     .limit(5)
   end
 
-  def items_not_shipped
+  def items_ready_to_ship
     self.items.joins(:invoices)
     .where("invoice_items.status= 1")
     .select("items.*, invoice_items.invoice_id, invoices.created_at as invoice_creation")
     .distinct
     .order(invoice_creation: :desc)
+  end
+
+  def disabled_items
+    items.where(status: 1)
+  end
+
+  def enabled_items
+    items.where(status: 0)
   end
 end

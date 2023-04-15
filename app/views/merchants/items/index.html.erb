@@ -4,8 +4,24 @@
 
 <h3><b>My Items</b></h3>
 
+<h3>Enabled Items</h3>
+
 <ul style="list-style-type:none">
-  <% @merchant.items.each do |item| %>
-    <li><%= link_to item.name, merchant_item_path(@merchant, item) %></li>
+  <% @merchant.enabled_items.each do |item| %>
+  <div id="item_<%=item.id %>">
+    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %> </li></p>
+    <%= render partial: 'enable_disable', locals: {model: [@merchant, item], value: 'disabled', button_text: 'Disable'} %>
+  </div>
+  <% end %>
+</ul>
+
+<h3>Disabled Items</h3>
+
+<ul style="list-style-type:none">
+  <% @merchant.disabled_items.each do |item| %>
+  <div id="item_<%=item.id %>">
+    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %></li></p>
+    <%= render partial: 'enable_disable', locals: {model: [@merchant, item], value: 'enabled', button_text: 'Enable'} %>
+  </div>
   <% end %>
 </ul>

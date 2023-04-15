@@ -18,8 +18,12 @@ class Merchants::ItemsController < ApplicationController
     item = Item.find(params[:id])
 
     if item.update(item_params)
-      flash[:success] = "#{item.name} was successfully updated."
-      redirect_to merchant_item_path(merchant, item)
+      if params[:commit] == 'Submit'
+        flash[:success] = "#{item.name} was successfully updated."
+        redirect_to merchant_item_path(merchant, item)
+      else
+        redirect_to merchant_items_path(merchant)
+      end
     else
       flash[:error] = "You messed up. Please try again"
       render :edit
@@ -28,6 +32,6 @@ class Merchants::ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, :unit_price)
+    params.require(:item).permit(:name, :description, :unit_price, :status)
   end
 end
