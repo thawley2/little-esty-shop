@@ -12,12 +12,9 @@ RSpec.describe 'Merchant Index' do
 
         expect(page).to have_content('Merchants Index')
 
-        within '.merchant_names' do
-          expect(page).to have_content(merchant1.name)
-          expect(page).to have_content(merchant2.name)
-        end
+        expect(page).to have_content(merchant1.name)
+        expect(page).to have_content(merchant2.name)
       end
-    end
 
       it 'I click the name of a merchant' do
         visit admin_merchants_path
@@ -25,31 +22,29 @@ RSpec.describe 'Merchant Index' do
         click_link(merchant1.name)
         expect(current_path).to eq(admin_merchant_path(merchant1))
       end
-
-    describe 'When I visit the admin merchants index' do
-      it 'I see a button to disable or enable that merchant next to each merchant name' do
+      
+      it 'I see sections for enabled/disabled merchants with enable/disable buttons next to their names' do
         visit admin_merchants_path
-        save_and_open_page
       
-        within ".merchant#{merchant1.id}" do
+        within ".disabled_merchants .merchant#{merchant1.id}" do
           click_button "Enable Merchant"
+          expect(current_path).to eq(admin_merchants_path)
         end
-        expect(current_path).to eq(admin_merchants_path)
+
         expect(page).to have_content("Steve is Enabled")
+        
+        within ".enabled_merchants" do
+          within ".merchant#{merchant2.id}" do
+            expect(page).to have_button("Disable Merchant")
+          end
 
-        within ".merchant#{merchant2.id}" do
-          click_button "Disable Merchant"
-        end
-        expect(current_path).to eq(admin_merchants_path)
-        expect(page).to have_content("Fred is Disabled")
-      
-        within ".merchant#{merchant1.id}" do
-          click_button "Disable Merchant"
+          within ".merchant#{merchant1.id}" do
+            click_button "Disable Merchant"
+            expect(current_path).to eq(admin_merchants_path)
+          end
         end
 
-        within ".merchant#{merchant2.id}" do
-          click_button "Enable Merchant"
-        end
+        expect(page).to have_content("Steve is Disabled")
       end
     end
   end
