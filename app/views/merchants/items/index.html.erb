@@ -4,8 +4,32 @@
 
 <h3><b>My Items</b></h3>
 
+<h3>Enabled Items</h3>
+
 <ul style="list-style-type:none">
-  <% @merchant.items.each do |item| %>
-    <li><%= link_to item.name, merchant_item_path(@merchant, item) %></li>
+  <% @merchant.enabled_items.each do |item| %>
+  <div id="item_<%=item.id %>">
+    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %> 
+    <%= form_with model: [@merchant, item], local: true do |f| %>
+      <%= f.hidden_field :status, value: 'disabled' %>
+      <%= f.submit 'Disable' %>
+    <% end %>
+    </li></p>
+  </div>
+  <% end %>
+</ul>
+
+<h3>Disabled Items</h3>
+
+<ul style="list-style-type:none">
+  <% @merchant.disabled_items.each do |item| %>
+  <div id="item_<%=item.id %>">
+    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %> 
+    <%= form_with model: [@merchant, item], local: true do |f| %>
+      <%= f.hidden_field :status, value: 'enabled' %>
+      <%= f.submit 'Enable' %>
+    <% end %>
+    </li></p>
+  </div>
   <% end %>
 </ul>
