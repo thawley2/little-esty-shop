@@ -1,4 +1,5 @@
 class Invoice < ApplicationRecord
+  include FormatHelper
   belongs_to :customer
   has_many :invoice_items
   has_many :items, through: :invoice_items
@@ -11,10 +12,6 @@ class Invoice < ApplicationRecord
     .where("invoice_items.status != 2")
     .distinct
     .order(:created_at)
-  end
-
-  def format_date
-    created_at.strftime("%A, %B %d, %Y")
   end
 end
 
