@@ -19,4 +19,8 @@ class Merchant < ApplicationRecord
     .distinct
     .order(invoice_creation: :desc)
   end
+
+  def switch_enabled
+    self.update(enabled: !enabled)
+  end
 end
