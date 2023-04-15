@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe '/merchants/:merchant_id/items/:id/edit' do
   before(:each) do
     test_data
-    merchant2_test_data
   end
 
   describe 'I am taken to a page to edit this item' do
@@ -18,9 +17,9 @@ RSpec.describe '/merchants/:merchant_id/items/:id/edit' do
       expect(page).to have_field('Unit Price', with: 15000)
       
       fill_in 'Name', with: 'Super Soaker'
-
       click_button("Submit")
       expect(current_path).to eq(merchant_item_path(@merchant, @item1))
+      expect(page).to have_content('Super Soaker')
     end
   end
 end
