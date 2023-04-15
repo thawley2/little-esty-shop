@@ -70,6 +70,8 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
           expect(Invoice.incomplete_invoices[1].format_date).to appear_before(Invoice.incomplete_invoices[2].format_date)
       end
     end
+
+    
   end
 end
 
