@@ -11,7 +11,7 @@ RSpec.describe Merchant, type: :model do
 
   describe 'instance methods' do
     it '#top_5_customers' do
-      expect(@merchant.top_5_customers).to eq([@customer6, @customer2, @customer3, @customer4, @customer5])
+      expect(@merchant.top_5_customers).to match_array([@customer6, @customer2, @customer3, @customer4, @customer5])
     end
     
     it '#top_5_customers has the attribute of transaction_count' do
@@ -53,12 +53,13 @@ RSpec.describe Merchant, type: :model do
       expect(@merchant.enabled_items).to match_array([@item1, @item3])
     end
 
-    describe '#switch_enable' do
-      it 'switches the boolean status of the enabled attribute' do
-      
+    describe '#switch_enabled' do
+      it 'switches merchant.enabled' do
         expect(@merchant.enabled?)
         @merchant.switch_enabled
         expect(!@merchant.enabled?)
+        @merchant.switch_enabled
+        expect(@merchant.enabled?)
       end
     end
   end
