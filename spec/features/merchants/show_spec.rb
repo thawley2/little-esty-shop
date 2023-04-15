@@ -73,6 +73,9 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
         end
         
         it 'I can see the date formatted like "Monday, July 18, 2019"' do
+          @invoice2.update(created_at: '23 Oct 2021')
+          @invoice3.update(created_at: '22 Oct 2021')
+          
           visit merchant_dashboard_path(@merchant)
 
           expect(page).to have_content(@invoice2.created_at.strftime("%A %B %d %Y"))
