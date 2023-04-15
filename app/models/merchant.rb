@@ -19,4 +19,12 @@ class Merchant < ApplicationRecord
     .distinct
     .order(invoice_creation: :desc)
   end
+
+  def disabled_items
+    items.where(status: 1)
+  end
+
+  def enabled_items
+    items.where(status: 0)
+  end
 end
