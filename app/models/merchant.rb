@@ -21,6 +21,10 @@ class Merchant < ApplicationRecord
   end
 
   def switch_enabled
-    self.update(enabled: !enabled)
+    update(enabled: !enabled)
+  end
+
+  def button_text
+    enabled? ? "Disable Merchant" : "Enable Merchant"
   end
 end
