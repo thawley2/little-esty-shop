@@ -40,11 +40,5 @@ class Merchant < ApplicationRecord
     where(enabled: :false)
   end
 
-  def button_text
-    enabled ? "Disable Merchant" : "Enable Merchant"
-  end
 
-  def enabled_text
-    enabled ? "Enabled" : "Disabled"
-  end
 end
