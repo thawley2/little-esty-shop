@@ -33,5 +33,14 @@ RSpec.describe Merchant, type: :model do
       expect(@merchant.items_not_shipped.first.invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice2.created_at.strftime("%A %B %d %Y"))
       expect(@merchant.items_not_shipped[1].invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice3.created_at.strftime("%A %B %d %Y"))
     end
+
+    describe '#switch_enable' do
+      it 'switches the boolean status of the enabled attribute' do
+      
+        expect(@merchant.enabled?)
+        @merchant.switch_enabled
+        expect(!@merchant.enabled?)
+      end
+    end
   end
 end
