@@ -33,6 +33,10 @@ class Merchant < ApplicationRecord
   end
 
   def button_text
-    enabled? ? "Disable Merchant" : "Enable Merchant"
+    enabled ? "Disable Merchant" : "Enable Merchant"
+  end
+
+  def enabled_text
+    enabled ? "Enabled" : "Disabled"
   end
 end
