@@ -53,14 +53,22 @@ RSpec.describe Merchant, type: :model do
       expect(@merchant.enabled_items).to match_array([@item1, @item3])
     end
 
-    describe '#switch_enabled' do
-      it 'switches merchant.enabled' do
-        expect(@merchant.enabled?)
-        @merchant.switch_enabled
-        expect(!@merchant.enabled?)
-        @merchant.switch_enabled
-        expect(@merchant.enabled?)
-      end
+    it 'switches merchant.enabled' do
+      expect(@merchant.enabled?)
+      @merchant.switch_enabled
+      expect(!@merchant.enabled?)
+      @merchant.switch_enabled
+      expect(@merchant.enabled?)
+    end
+  end
+
+  describe 'model methods' do
+    it '.enabled' do
+      expect(Merchant.enabled.none?{|mer| mer.enabled == false})
+    end
+    
+    it '.disabled' do
+      expect(Merchant.disabled.none?{|mer| mer.enabled == true})
     end
   end
 end
