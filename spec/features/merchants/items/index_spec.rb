@@ -41,9 +41,8 @@ RSpec.describe '/merchants/:id/items', type: :feature do
 
     describe 'I see a button next to each item to enable or disable' do
       it 'where the button is enabled for disabled items' do
-        @item2.update(status: 1)
-        @item4.update(status: 1)
-        @item5.update(status: 1)
+        @item1.update(status: 1)
+        @item3.update(status: 1)
         visit merchant_items_path(@merchant)
 
         expect(page).to have_content('Disabled Items')
@@ -69,14 +68,12 @@ RSpec.describe '/merchants/:id/items', type: :feature do
         within "#item_#{@item3.id}" do
           expect(page).to_not have_button("Enable")
         end
-        
-
       end
 
       it 'where the button is disabled for enabled items' do
-        @item2.update(status: 1)
-        @item4.update(status: 1)
-        @item5.update(status: 1)
+        @item1.update(status: 1)
+        @item3.update(status: 1)
+
         visit merchant_items_path(@merchant)
 
         expect(page).to have_content('Enabled Items')
@@ -85,11 +82,12 @@ RSpec.describe '/merchants/:id/items', type: :feature do
           click_button('Disable')
           expect(current_path).to eq(merchant_items_path(@merchant))
           expect(page).to have_button("Enable")
-
         end
+
         within "#item_#{@item3.id}" do
           expect(page).to have_button("Disable")
         end
+        
         within "#item_#{@item5.id}" do
           expect(page).to_not have_button("Disable")
         end

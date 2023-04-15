@@ -40,16 +40,14 @@ RSpec.describe Merchant, type: :model do
     end
 
     it '#disabled_items, returns a list of items with a disabled status for a merchant' do
-      @item2.update(status: 1)
-      @item4.update(status: 1)
-      @item5.update(status: 1)
+      @item1.update(status: 1)
+      @item3.update(status: 1)
       expect(@merchant.disabled_items).to match_array([@item2, @item4, @item5])
     end
 
     it '#enabled_items, returns a list of items with an enabled status for a merchant' do
-      @item2.update(status: 1)
-      @item4.update(status: 1)
-      @item5.update(status: 1)
+      @item1.update(status: 1)
+      @item3.update(status: 1)
       expect(@merchant.enabled_items).to match_array([@item1, @item3])
     end
   end
