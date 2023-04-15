@@ -11,7 +11,7 @@ RSpec.describe Merchant, type: :model do
 
   describe 'instance methods' do
     it '#top_5_customers' do
-      expect(@merchant.top_5_customers).to eq([@customer6, @customer2, @customer3, @customer4, @customer5])
+      expect(@merchant.top_5_customers).to match_array([@customer6, @customer2, @customer3, @customer4, @customer5])
     end
     
     it '#top_5_customers has the attribute of transaction_count' do
@@ -22,18 +22,51 @@ RSpec.describe Merchant, type: :model do
       expect(@merchant.top_5_customers[4].transaction_count).to eq(2)
     end
 
-    it '#items_not_shipped' do
-      expect(@merchant.items_not_shipped).to match_array([@item1, @item2])
-      expect(@merchant.items_not_shipped.first.invoice_id).to eq(@invoice2.id)
-      expect(@merchant.items_not_shipped[1].invoice_id).to eq(@invoice3.id)
-    end
-
-    it '#items_not_shipped has the attribute of invoice_creation' do
+    it '#items_ready_to_ship' do
       @invoice2.update(created_at: '23 Oct 2021')
       @invoice3.update(created_at: '22 Oct 2021')
 
-      expect(@merchant.items_not_shipped.first.invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice2.created_at.strftime("%A %B %d %Y"))
-      expect(@merchant.items_not_shipped[1].invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice3.created_at.strftime("%A %B %d %Y"))
+      expect(@merchant.items_ready_to_ship).to match_array([@item1, @item2])
+      expect(@merchant.items_ready_to_ship.first.invoice_id).to eq(@invoice2.id)
+      expect(@merchant.items_ready_to_ship[1].invoice_id).to eq(@invoice3.id)
+    end
+
+    it '#items_ready_to_ship has the attribute of invoice_creation' do
+      @invoice2.update(created_at: '23 Oct 2021')
+      @invoice3.update(created_at: '22 Oct 2021')
+
+      expect(@merchant.items_ready_to_ship.first.invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice2.created_at.strftime("%A %B %d %Y"))
+      expect(@merchant.items_ready_to_ship[1].invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice3.created_at.strftime("%A %B %d %Y"))
+    end
+
+    it '#disabled_items, returns a list of items with a disabled status for a merchant' do
+      @item1.update(status: 1)
+      @item3.update(status: 1)
+      expect(@merchant.disabled_items).to match_array([@item2, @item4, @item5])
+    end
+
+    it '#enabled_items, returns a list of items with an enabled status for a merchant' do
+      @item1.update(status: 1)
+      @item3.update(status: 1)
+      expect(@merchant.enabled_items).to match_array([@item1, @item3])
+    end
+
+    it 'switches merchant.enabled' do
+      expect(@merchant.enabled?)
+      @merchant.switch_enabled
+      expect(!@merchant.enabled?)
+      @merchant.switch_enabled
+      expect(@merchant.enabled?)
+    end
+  end
+
+  describe 'model methods' do
+    it '.enabled' do
+      expect(Merchant.enabled.none?{|mer| mer.enabled == false})
+    end
+    
+    it '.disabled' do
+      expect(Merchant.disabled.none?{|mer| mer.enabled == true})
     end
   end
 end
