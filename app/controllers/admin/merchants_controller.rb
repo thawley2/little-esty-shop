@@ -9,6 +9,7 @@ class Admin::MerchantsController < ApplicationController
 
   def edit
     @merchant = Merchant.find(params[:id])
+
   end
 
   private
