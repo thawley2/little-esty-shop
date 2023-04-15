@@ -16,7 +16,7 @@ class Admin::MerchantsController < ApplicationController
 
     if params[:switch_enabled]
       @merchant.switch_enabled
-      enabled_status = @merchant.enabled? ? "Enabled" : "Disabled"
+      enabled_status = @merchant.enabled ? "Enabled" : "Disabled"
       redirect_to admin_merchants_path, notice: "#{@merchant.name} is #{enabled_status}"
 
     elsif @merchant.update(merchant_params)
