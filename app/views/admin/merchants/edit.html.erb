@@ -1,7 +1,6 @@
 <h1> Admin Merchant Edit Page </h1>
 
-<%= form_with model: @merchant, local: true do |form| %>
-<% binding.pry %>
+<%= form_with model: [:admin, @merchant], local: true do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
   <%= form.submit %>
