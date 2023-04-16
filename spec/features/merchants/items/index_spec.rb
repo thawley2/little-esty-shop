@@ -27,15 +27,24 @@ RSpec.describe '/merchants/:id/items', type: :feature do
       it 'Then I am taken to that merchants items show page' do
         visit merchant_items_path(@merchant)
 
-      expect(page).to have_link("#{@item1.name}")
-      expect(page).to have_link("#{@item2.name}")
-      expect(page).to have_link("#{@item3.name}")
-      expect(page).to have_link("#{@item4.name}")
-      expect(page).to have_link("#{@item5.name}")
-
-      click_link("#{@item1.name}")
-
-      expect(current_path).to eq(merchant_item_path(@merchant, @item1))
+        within "#item_#{@item2.id}" do
+          expect(page).to have_link("#{@item2.name}")
+        end
+        within "#item_#{@item3.id}" do
+          expect(page).to have_link("#{@item3.name}")
+        end
+        within "#item_#{@item4.id}" do
+          expect(page).to have_link("#{@item4.name}")
+        end
+        within "#item_#{@item5.id}" do
+          expect(page).to have_link("#{@item5.name}")
+        end
+        within "#item_#{@item1.id}" do
+          expect(page).to have_link("#{@item1.name}")
+          click_link("#{@item1.name}")
+          expect(current_path).to eq(merchant_item_path(@merchant, @item1))
+        end
+        
       end
     end
 
@@ -110,7 +119,7 @@ RSpec.describe '/merchants/:id/items', type: :feature do
         it 'And I see the total revenue generated next to each item name' do
           #item11, item8, item6, item9, item12
           visit merchant_items_path(@merchant2)
-# save_and_open_page
+
           expect(page).to have_content('Top Items')
 
           within "#top_items" do
@@ -138,6 +147,28 @@ RSpec.describe '/merchants/:id/items', type: :feature do
           within "#top_item_#{@item12.id}" do
             expect(page).to have_content('$1.00 in sales')
           end
+
+          within "#top_items" do
+            expect(page).to have_link("#{@item11.name}")
+          end
+          within "#top_items" do
+            expect(page).to have_link("#{@item8.name}")
+          end
+          within "#top_items" do
+            expect(page).to have_link("#{@item6.name}")
+          end
+          within "#top_items" do
+            expect(page).to have_link("#{@item9.name}")
+          end
+          within "#top_items" do
+            expect(page).to have_link("#{@item12.name}")
+            click_link "#{@item12.name}"
+            expect(current_path).to eq(merchant_item_path(@merchant2, @item12))
+          end
+        end
+
+        it 'Next to each item I see the date with the most sales for each item' do
+
         end
       end
     end
