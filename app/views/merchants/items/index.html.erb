@@ -10,6 +10,7 @@
 
 <ul style="list-style-type:none">
   <% @merchant.enabled_items.each do |item| %>
+  <% #future refactor for Nick and Thomas, add this shtuff to the partial %>
   <div id="item_<%=item.id %>">
     <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %> </li></p>
     <%= render partial: 'enable_disable', locals: {model: [@merchant, item], value: 'disabled', button_text: 'Disable'} %>
@@ -21,9 +22,17 @@
 
 <ul style="list-style-type:none">
   <% @merchant.disabled_items.each do |item| %>
+  <% #also add this to partials %>
   <div id="item_<%=item.id %>">
     <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %></li></p>
     <%= render partial: 'enable_disable', locals: {model: [@merchant, item], value: 'enabled', button_text: 'Enable'} %>
   </div>
   <% end %>
 </ul>
+
+<h3>Top Items</h3>
+<ol>
+<% @merchant.top_five_items.each do |item| %>
+  <li><%= item.name %> - <%= number_to_currency(item.tot_revenue/100) %> in sales</li>
+<% end %>
+</ol>
