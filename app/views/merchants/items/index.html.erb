@@ -35,7 +35,7 @@
 <ol>
 <% @merchant.top_five_items.each do |item| %>
   <div id="top_item_<%= item.id %>">
-    <li><%= item.name %> - <%= number_to_currency(item.tot_revenue/100) %> in sales</li>
+    <li><%= link_to item.name, merchant_item_path(@merchant, item) %> - <%= number_to_currency(item.tot_revenue/100) %> in sales</li>
   </div>
 <% end %>
 </ol>
