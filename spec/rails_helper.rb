@@ -87,6 +87,8 @@ def merchant2_test_data
   @init4 = create(:invoice_item, item: @item9, invoice: @invoice10, unit_price: 100, quantity: 10)
   @init5 = create(:invoice_item, item: @item10, invoice: @invoice11, unit_price: 1, quantity: 10)
   @init6 = create(:invoice_item, item: @item11, invoice: @invoice12, unit_price: 1000000, quantity: 10)
+  @init8 = create(:invoice_item, item: @item11, invoice: @invoice7, unit_price: 500, quantity: 15)
+  @init9 = create(:invoice_item, item: @item11, invoice: @invoice9, unit_price: 525, quantity: 25)
   @init7 = create(:invoice_item, item: @item12, invoice: @invoice13, unit_price: 10, quantity: 10)
 end
 # item11, item8, item6, item9, item12
