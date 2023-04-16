@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Merchant, type: :model do
   before(:each) do
     test_data
+    merchant2_test_data
   end
   it { should have_many(:items) }
   it { should have_many(:invoice_items).through(:items)}
@@ -49,6 +50,10 @@ RSpec.describe Merchant, type: :model do
       @item1.update(status: 1)
       @item3.update(status: 1)
       expect(@merchant.enabled_items).to match_array([@item1, @item3])
+    end
+
+    it '#top_five_items, returns a list of the top 5 items based on total revenu' do
+      expect(@merchant2.top_five_items).to match_array([@item11, @item8, @item6, @item9, @item12])
     end
   end
 end
