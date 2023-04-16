@@ -31,8 +31,12 @@
 </ul>
 
 <h3>Top Items</h3>
+<div id="top_items">
 <ol>
 <% @merchant.top_five_items.each do |item| %>
-  <li><%= item.name %> - <%= number_to_currency(item.tot_revenue/100) %> in sales</li>
+  <div id="top_item_<%= item.id %>">
+    <li><%= item.name %> - <%= number_to_currency(item.tot_revenue/100) %> in sales</li>
+  </div>
 <% end %>
 </ol>
+</div>
