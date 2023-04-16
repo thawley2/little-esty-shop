@@ -36,8 +36,8 @@ RSpec.describe Merchant, type: :model do
       @invoice2.update(created_at: '23 Oct 2021')
       @invoice3.update(created_at: '22 Oct 2021')
 
-      expect(@merchant.items_ready_to_ship.first.invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice2.created_at.strftime("%A %B %d %Y"))
-      expect(@merchant.items_ready_to_ship[1].invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice3.created_at.strftime("%A %B %d %Y"))
+      expect(@merchant.items_ready_to_ship.first.invoice_creation).to eq(@invoice2.created_at)
+      expect(@merchant.items_ready_to_ship[1].invoice_creation).to eq(@invoice3.created_at)
     end
 
     it '#disabled_items, returns a list of items with a disabled status for a merchant' do
