@@ -9,7 +9,6 @@ RSpec.describe 'Merchant Index' do
     describe 'When I visit the admin merchants index' do
       it 'I see the name of each merchant in the system' do
         visit admin_merchants_path
-        save_and_open_page
 
         expect(page).to have_content('Merchants Index')
 

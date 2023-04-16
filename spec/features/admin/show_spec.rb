@@ -62,7 +62,6 @@ RSpec.describe 'Admin Show Dashboard Page', type: :feature do
 
     it 'In the section for "Incomplete Invoices" and next to each invoice id I see the date formatted that the invoice was created at and the list is ordered from oldest to newest ' do
       visit admin_dashboard_path
-      save_and_open_page
 
       within 'section#incomplete-invoices' do
           expect(page).to have_content(@invoice2.format_date)
