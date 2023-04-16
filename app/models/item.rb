@@ -8,4 +8,14 @@ class Item < ApplicationRecord
   validates :unit_price, presence: true
 
   enum status: { 'enabled': 1, 'disabled': 0 }
+
+  def best_sell_date
+    invoices.joins(:transactions)
+    .where(transactions: {result: 'success'})
+    .select("invoices.*, count(transactions)")
+    .group(:id)
+    .order(count: :desc)
+    .pluck(:created_at)
+    .first
+  end
 end

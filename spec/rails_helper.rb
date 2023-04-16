@@ -80,16 +80,19 @@ def merchant2_test_data
   @tran7 = create(:transaction, result: 'success', invoice: @invoice11)
   @tran8 = create(:transaction, result: 'success', invoice: @invoice12)
   @tran9 = create(:transaction, result: 'success', invoice: @invoice13)
+  @tran10 = create(:transaction, result: 'success', invoice: @invoice7)
+  @tran11 = create(:transaction, result: 'success', invoice: @invoice7)
+  @tran13 = create(:transaction, result: 'success', invoice: @invoice7)
   
   @init1 = create(:invoice_item, item: @item6, invoice: @invoice7, unit_price: 1000, quantity: 10)
   @init2 = create(:invoice_item, item: @item7, invoice: @invoice8, unit_price: 10000, quantity: 1000)
   @init3 = create(:invoice_item, item: @item8, invoice: @invoice9, unit_price: 1000, quantity: 100)
   @init4 = create(:invoice_item, item: @item9, invoice: @invoice10, unit_price: 100, quantity: 10)
   @init5 = create(:invoice_item, item: @item10, invoice: @invoice11, unit_price: 1, quantity: 10)
+  @init7 = create(:invoice_item, item: @item12, invoice: @invoice13, unit_price: 10, quantity: 10)
   @init6 = create(:invoice_item, item: @item11, invoice: @invoice12, unit_price: 1000000, quantity: 10)
   @init8 = create(:invoice_item, item: @item11, invoice: @invoice7, unit_price: 500, quantity: 15)
   @init9 = create(:invoice_item, item: @item11, invoice: @invoice9, unit_price: 525, quantity: 25)
-  @init7 = create(:invoice_item, item: @item12, invoice: @invoice13, unit_price: 10, quantity: 10)
 end
 # item11, item8, item6, item9, item12
 # This file is copied to spec/ when you run 'rails generate rspec:install'
