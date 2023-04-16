@@ -37,4 +37,16 @@ class Merchant < ApplicationRecord
     .order(tot_revenue: :desc)
     .limit(5)
   end
+
+  def switch_enabled
+    update(enabled: !enabled)
+  end
+
+  def self.enabled
+    where(enabled: :true)
+  end
+
+  def self.disabled
+    where(enabled: :false)
+  end
 end
