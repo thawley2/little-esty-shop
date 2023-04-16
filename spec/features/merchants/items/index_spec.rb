@@ -104,5 +104,42 @@ RSpec.describe '/merchants/:id/items', type: :feature do
         expect(current_path).to eq(new_merchant_item_path(@merchant))
       end
     end
+
+    describe 'I see the names of the top 5 most popular items ranked by total revenue generated' do
+      describe 'And I see that each item name links to my merchant item show page for that item' do
+        it 'And I see the total revenue generated next to each item name' do
+          #item11, item8, item6, item9, item12
+          visit merchant_items_path(@merchant2)
+# save_and_open_page
+          expect(page).to have_content('Top Items')
+
+          within "#top_items" do
+            expect(@item11.name).to appear_before(@item8.name)
+            expect(@item8.name).to appear_before(@item6.name)
+            expect(@item6.name).to appear_before(@item9.name)
+            expect(@item9.name).to appear_before(@item12.name)
+            expect(@item12.name).to_not appear_before(@item11.name)
+            expect(page).to_not have_content(@item12)
+            expect(page).to_not have_content(@item7)
+          end
+          
+          within "#top_item_#{@item11.id}" do
+            expect(page).to have_content('$100,206.00 in sales')
+          end
+          within "#top_item_#{@item8.id}" do
+            expect(page).to have_content('$1,000.00 in sales')
+          end
+          within "#top_item_#{@item6.id}" do
+            expect(page).to have_content('$100.00 in sales')
+          end
+          within "#top_item_#{@item9.id}" do
+            expect(page).to have_content('$10.00 in sales')
+          end
+          within "#top_item_#{@item12.id}" do
+            expect(page).to have_content('$1.00 in sales')
+          end
+        end
+      end
+    end
   end
 end

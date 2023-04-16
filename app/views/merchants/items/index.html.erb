@@ -1,29 +1,42 @@
-<h1>Little Esty Shop</h1>
-
-<h2><%= @merchant.name %></h2>
+<%= render partial: '/merchants/header', locals: {merchant: @merchant.name} %>
 
 <h3><b>My Items</b></h3>
 
 <h4><%= link_to 'New Item', new_merchant_item_path(@merchant)%></h4>
 
 <h3>Enabled Items</h3>
-
-<ul style="list-style-type:none">
   <% @merchant.enabled_items.each do |item| %>
-  <div id="item_<%=item.id %>">
-    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %> </li></p>
-    <%= render partial: 'enable_disable', locals: {model: [@merchant, item], value: 'disabled', button_text: 'Disable'} %>
-  </div>
+    <%= render partial: 'enable_disable', 
+      locals: {item_id: item.id, 
+      item_name: item.name, 
+      model: [@merchant, item], 
+      value: 'disabled', 
+      button_text: 'Disable', 
+      link: merchant_item_path(@merchant, item)} 
+    %>
   <% end %>
-</ul>
+
 
 <h3>Disabled Items</h3>
-
-<ul style="list-style-type:none">
   <% @merchant.disabled_items.each do |item| %>
-  <div id="item_<%=item.id %>">
-    <p><li><%= link_to item.name, merchant_item_path(@merchant, item) %></li></p>
-    <%= render partial: 'enable_disable', locals: {model: [@merchant, item], value: 'enabled', button_text: 'Enable'} %>
-  </div>
+    <%= render partial: 'enable_disable', 
+      locals: {item_id: item.id, 
+      item_name: item.name, 
+      model: [@merchant, item], 
+      value: 'enabled', 
+      button_text: 'Enable', 
+      link: merchant_item_path(@merchant, item)} 
+    %>
   <% end %>
-</ul>
+
+
+<h3>Top Items</h3>
+<div id="top_items">
+<ol>
+<% @merchant.top_five_items.each do |item| %>
+  <div id="top_item_<%= item.id %>">
+    <li><%= item.name %> - <%= number_to_currency(item.tot_revenue/100) %> in sales</li>
+  </div>
+<% end %>
+</ol>
+</div>

@@ -1,5 +1,5 @@
-<h1> Merchant Dashboard Page </h1>
-<%= @merchant.name %>
+<%= render partial: '/merchants/header', locals: {merchant: @merchant.name} %>
+
 <%= link_to "My Items", "/merchants/#{@merchant.id}/items" %>
 <%= link_to "My Invoices", "/merchants/#{@merchant.id}/invoices" %>
 
