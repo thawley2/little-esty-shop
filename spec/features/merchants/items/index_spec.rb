@@ -133,13 +133,13 @@ RSpec.describe '/merchants/:id/items', type: :feature do
           end
           
           within "#top_item_#{@item11.id}" do
-            expect(page).to have_content('$100,206.00 in sales')
+            expect(page).to have_content('$100,431.00 in sales')
           end
           within "#top_item_#{@item8.id}" do
             expect(page).to have_content('$1,000.00 in sales')
           end
           within "#top_item_#{@item6.id}" do
-            expect(page).to have_content('$100.00 in sales')
+            expect(page).to have_content('$400.00 in sales')
           end
           within "#top_item_#{@item9.id}" do
             expect(page).to have_content('$10.00 in sales')
@@ -167,8 +167,25 @@ RSpec.describe '/merchants/:id/items', type: :feature do
           end
         end
 
-        it 'Next to each item I see the date with the most sales for each item' do
+        it 'Next to each item I see the date with the most sales for each item (Top selling date for <item name> was <date with most sales>)' do
+          @invoice7.update(created_at: '23 Oct 2021')
+          visit merchant_items_path(@merchant2)
 
+          within "#top_item_#{@item11.id}" do
+            expect(page).to have_content("Top day for #{@item11.name} was #{@invoice7.created_at.strftime("%m/%d/%y")}")
+          end
+          within "#top_item_#{@item8.id}" do
+            expect(page).to have_content("Top day for #{@item8.name} was #{@invoice9.created_at.strftime("%m/%d/%y")}")
+          end
+          within "#top_item_#{@item6.id}" do
+            expect(page).to have_content("Top day for #{@item6.name} was #{@invoice7.created_at.strftime("%m/%d/%y")}")
+          end
+          within "#top_item_#{@item9.id}" do
+            expect(page).to have_content("Top day for #{@item9.name} was #{@invoice10.created_at.strftime("%m/%d/%y")}")
+          end
+          within "#top_item_#{@item12.id}" do
+            expect(page).to have_content("Top day for #{@item12.name} was #{@invoice13.created_at.strftime("%m/%d/%y")}")
+          end
         end
       end
     end
