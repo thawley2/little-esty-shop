@@ -55,7 +55,26 @@ class Merchant < ApplicationRecord
   end
 
   def self.top_five
-    order(total_revenue: :desc).limit(5)
+    # require 'pry'; binding.pry
+        joins(invoices: :transactions)
+        .where('transactions.result = ?', 'success')
+        .select("merchants.id, merchants.name, SUM(invoice_items.unit_price * invoice_items.quantity)")
+        .group("merchants.id")
+        .order("SUM desc")
+        .limit(5)
+
+        # def top_five_items
+        #   items.joins(invoices: :transactions)
+        #   .where(transactions: {result: 'success'})
+        #   .select("items.*, sum(invoice_items.unit_price * invoice_items.quantity) as tot_revenue")
+        #   .group(:id)
+        #   .order(tot_revenue: :desc)
+        #   .limit(5)
+
+    # require 'pry'; binding.pry
+    # Merchant.joins([invoices: :transactions], :invoice_items).where('transactions.result = ?', 'success').select("merchants.id, merchants.name, SUM(invoice_items.unit_price * invoice_items.quantity) as tot_revenue").group("merchants.id").order("tot_revenue desc").limit(5)
+
+    # order(total_revenue: :desc).limit(5)
   end
 
   def total_revenue
