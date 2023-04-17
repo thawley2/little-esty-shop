@@ -43,9 +43,33 @@ RSpec.describe 'Merchant Index' do
             expect(current_path).to eq(admin_merchants_path)
           end
         end
-
         expect(page).to have_content("Steve is Disabled")
+      end
+
+        
+      it "I see a link to create a new merchant and when I click on the link, I am taken to a form that allows me to add merchant information. When I fill out the form I click ‘Submit’ then I am taken back to the admin merchants index page and I see the merchant I just created displayed and I see my merchant was created with a default status of disabled." do
+        visit admin_merchants_path
+        save_and_open_page
+        click_link("Create Merchant")
+    
+        expect(current_path).to eq(new_admin_merchant_path)
+
+        fill_in 'Name', with: "Marchand"
+        click_button("Create Merchant")
+        expect(current_path).to eq(admin_merchants_path)
+
+        expect(page).to have_content("Marchand")
+      
       end
     end
   end
 end
+# As an admin,
+# When I visit the admin merchants index
+# I see a link to create a new merchant.
+# When I click on the link,
+# I am taken to a form that allows me to add merchant information.
+# When I fill out the form I click ‘Submit’
+# Then I am taken back to the admin merchants index page
+# And I see the merchant I just created displayed
+# And I see my merchant was created with a default status of disabled.
