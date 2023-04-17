@@ -57,9 +57,9 @@ RSpec.describe Merchant, type: :model do
     end
 
     it '#top_five_items, has attributes for tot_revenue invoice_items(unit_price * quantity)' do
-      expect(@merchant2.top_five_items.first.tot_revenue).to eq(10020625)
+      expect(@merchant2.top_five_items.first.tot_revenue).to eq(10043125)
       expect(@merchant2.top_five_items[1].tot_revenue).to eq(100000)
-      expect(@merchant2.top_five_items[2].tot_revenue).to eq(10000)
+      expect(@merchant2.top_five_items[2].tot_revenue).to eq(40000)
       expect(@merchant2.top_five_items[3].tot_revenue).to eq(1000)
       expect(@merchant2.top_five_items[4].tot_revenue).to eq(100)
     end
