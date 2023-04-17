@@ -1,13 +1,17 @@
 <h1>Merchants Index</h1>
 
-<div class="enabled_merchants">
-  <% @merchants.enabled.each do |merchant| %>
+<p><%= link_to 'Create New Merchant', new_admin_merchant_path %>
+
+<div class="disabled_merchants">
+  <h4>Disabled Merchants</h4>
+  <% @merchants.disabled.each do |merchant| %>
     <%= render partial: 'merchant_partial', locals: { merchant: merchant } %>
   <% end %>
 </div>
 
-<div class="disabled_merchants">
-  <% @merchants.disabled.each do |merchant| %>
+<div class="enabled_merchants">
+  <h4>Enabled Merchants</h4>
+  <% @merchants.enabled.each do |merchant| %>
     <%= render partial: 'merchant_partial', locals: { merchant: merchant } %>
   <% end %>
 </div>

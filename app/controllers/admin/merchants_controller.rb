@@ -3,6 +3,22 @@ class Admin::MerchantsController < ApplicationController
     @merchants = Merchant.all
   end
 
+  def new
+    @merchant = Merchant.new
+  end
+
+  def create
+    @merchant = Merchant.new(merchant_params)
+    @merchant.switch_enabled
+    if @merchant.save
+      flash[:notice] = "#{@merchant.name} was successfully created"
+      redirect_to admin_merchants_path
+    else
+      flash[:alert] = "You messed up. Try again"
+      render :new
+    end
+  end
+
   def show
     @merchant = Merchant.find(params[:id])
   end
@@ -16,8 +32,8 @@ class Admin::MerchantsController < ApplicationController
 
     if params[:switch_enabled]
       @merchant.switch_enabled
-      enabled_status = @merchant.enabled? ? "Enabled" : "Disabled"
-      redirect_to admin_merchants_path, notice: "#{@merchant.name} is #{enabled_status}"
+      enabled_text = @merchant.enabled ? "Enabled" : "Disabled"
+      redirect_to admin_merchants_path, notice: "#{@merchant.name} is #{enabled_text}"
 
     elsif @merchant.update(merchant_params)
       flash[:success] = "#{@merchant.name} was successfully updated."
