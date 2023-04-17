@@ -53,4 +53,25 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       expect(page).to have_content("Total Revenue: $175.00")
     end
   end
+
+  describe "I see that each invoice item status is a select field with it's current status selected" do
+    it 'can change the status of an item' do
+      merchant3_test_data
+      @item6.update(status: 0)
+      visit merchant_invoice_path(@merchant2, @invoice7)
+      
+      within "#item_#{@item6.id}" do
+        expect(page).to have_selector(text: "pending")
+
+        select 'packaged', from: 'Status'
+
+        expect(page).to have_button("Update Item Status")
+
+        click_button("Update Item Status")
+
+        expect(current_path).to eq(merchant_invoice_path(@merchant2, @invoice7))
+        expect(page).to have_selector(text: 'packaged')
+      end
+    end
+  end
 end
