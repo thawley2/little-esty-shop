@@ -66,6 +66,8 @@ RSpec.describe 'Merchant Index' do
   
         expect(page).to have_content('Marchand was successfully created')
       end
+
+      
     end
   end
 end
