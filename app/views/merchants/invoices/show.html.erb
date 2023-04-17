@@ -7,3 +7,23 @@
 
 <h4>Customer:</h4>
 <p><%= @invoice.customer.full_name %></p>
+
+<h4>Items on this Invoice:</h4>
+
+<table>
+  <tr>
+    <th>Item Name</th>
+    <th>Quantity</th>
+    <th>Unit Price</th>
+    <th>Status</th>
+  </tr>
+  <% @merchant.invoice_items_data(@invoice.id).each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.sold_price %></td>
+      <td><%= item.invitm_status %></td>
+    </tr>
+  <% end %>
+</table>
+  
