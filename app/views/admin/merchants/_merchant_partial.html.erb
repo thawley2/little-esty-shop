@@ -1,5 +1,6 @@
 <div class="merchant<%= merchant.id %>">
   <p><%= link_to merchant.name, admin_merchant_path(merchant) %> 
-  <%= button_to (merchant.enabled ? "Disable #{merchant.name}" : "Enable #{merchant.name}"), admin_merchant_path(merchant, switch_enabled: true), method: :patch %>
+  <%= button_to (merchant.enabled ? "Disable #{merchant.name}" : "Enable #{merchant.name}"), 
+  admin_merchant_path(merchant, switch_enabled: true), method: :patch %>
   </p>
 </div>
