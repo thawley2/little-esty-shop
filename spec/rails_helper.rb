@@ -53,8 +53,48 @@ def merchant2_test_data
   @item8 = create(:item, merchant: @merchant2)
   @item9 = create(:item, merchant: @merchant2)
   @item10 = create(:item, merchant: @merchant2)
+  @item11 = create(:item, merchant: @merchant2)
+  @item12 = create(:item, merchant: @merchant2)
 
+  @customer7 = create(:customer)
+  @customer8 = create(:customer)
+  @customer9 = create(:customer)
+  @customer10 = create(:customer)
+  @customer11 = create(:customer)
+  @customer12 = create(:customer)
+
+  @invoice7 = create(:invoice, customer: @customer7)
+  @invoice8 = create(:invoice, customer: @customer8)
+  @invoice9 = create(:invoice, customer: @customer9)
+  @invoice10 = create(:invoice, customer: @customer10)
+  @invoice11 = create(:invoice, customer: @customer11)
+  @invoice12 = create(:invoice, customer: @customer12)
+  @invoice13 = create(:invoice, customer: @customer12)
+
+  @tran1 = create(:transaction, result: 'success', invoice: @invoice7)
+  @tran2 = create(:transaction, result: 'failed', invoice: @invoice7)
+  @tran3 = create(:transaction, result: 'failed', invoice: @invoice8)
+  @tran4 = create(:transaction, result: 'failed', invoice: @invoice8)
+  @tran5 = create(:transaction, result: 'success', invoice: @invoice9)
+  @tran6 = create(:transaction, result: 'success', invoice: @invoice10)
+  @tran7 = create(:transaction, result: 'success', invoice: @invoice11)
+  @tran8 = create(:transaction, result: 'success', invoice: @invoice12)
+  @tran9 = create(:transaction, result: 'success', invoice: @invoice13)
+  @tran10 = create(:transaction, result: 'success', invoice: @invoice7)
+  @tran11 = create(:transaction, result: 'success', invoice: @invoice7)
+  @tran13 = create(:transaction, result: 'success', invoice: @invoice7)
+  
+  @init1 = create(:invoice_item, item: @item6, invoice: @invoice7, unit_price: 1000, quantity: 10)
+  @init2 = create(:invoice_item, item: @item7, invoice: @invoice8, unit_price: 10000, quantity: 1000)
+  @init3 = create(:invoice_item, item: @item8, invoice: @invoice9, unit_price: 1000, quantity: 100)
+  @init4 = create(:invoice_item, item: @item9, invoice: @invoice10, unit_price: 100, quantity: 10)
+  @init5 = create(:invoice_item, item: @item10, invoice: @invoice11, unit_price: 1, quantity: 10)
+  @init7 = create(:invoice_item, item: @item12, invoice: @invoice13, unit_price: 10, quantity: 10)
+  @init6 = create(:invoice_item, item: @item11, invoice: @invoice12, unit_price: 1000000, quantity: 10)
+  @init8 = create(:invoice_item, item: @item11, invoice: @invoice7, unit_price: 500, quantity: 15)
+  @init9 = create(:invoice_item, item: @item11, invoice: @invoice9, unit_price: 525, quantity: 25)
 end
+# item11, item8, item6, item9, item12
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
 SimpleCov.start

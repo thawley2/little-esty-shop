@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Merchant, type: :model do
   before(:each) do
     test_data
+    merchant2_test_data
   end
   it { should have_many(:items) }
   it { should have_many(:invoice_items).through(:items)}
@@ -35,8 +36,8 @@ RSpec.describe Merchant, type: :model do
       @invoice2.update(created_at: '23 Oct 2021')
       @invoice3.update(created_at: '22 Oct 2021')
 
-      expect(@merchant.items_ready_to_ship.first.invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice2.created_at.strftime("%A %B %d %Y"))
-      expect(@merchant.items_ready_to_ship[1].invoice_creation.strftime("%A %B %d %Y")).to eq(@invoice3.created_at.strftime("%A %B %d %Y"))
+      expect(@merchant.items_ready_to_ship.first.invoice_creation).to eq(@invoice2.created_at)
+      expect(@merchant.items_ready_to_ship[1].invoice_creation).to eq(@invoice3.created_at)
     end
 
     it '#disabled_items, returns a list of items with a disabled status for a merchant' do
@@ -51,6 +52,18 @@ RSpec.describe Merchant, type: :model do
       expect(@merchant.enabled_items).to match_array([@item1, @item3])
     end
 
+    it '#top_five_items, returns a list of the top 5 items based on total revenu' do
+      expect(@merchant2.top_five_items).to match_array([@item11, @item8, @item6, @item9, @item12])
+    end
+
+    it '#top_five_items, has attributes for tot_revenue invoice_items(unit_price * quantity)' do
+      expect(@merchant2.top_five_items.first.tot_revenue).to eq(10043125)
+      expect(@merchant2.top_five_items[1].tot_revenue).to eq(100000)
+      expect(@merchant2.top_five_items[2].tot_revenue).to eq(40000)
+      expect(@merchant2.top_five_items[3].tot_revenue).to eq(1000)
+      expect(@merchant2.top_five_items[4].tot_revenue).to eq(100)
+    end
+
     it 'switches merchant.enabled' do
       expect(@merchant.enabled?)
       @merchant.switch_enabled
@@ -58,7 +71,13 @@ RSpec.describe Merchant, type: :model do
       @merchant.switch_enabled
       expect(@merchant.enabled?)
     end
+
+    it '#uniq_invoices' do
+      expect(@merchant.uniq_invoices).to eq([@invoice1, @invoice2, @invoice3, @invoice4, @invoice5, @invoice6])
+      expect(@merchant2.uniq_invoices).to eq([@invoice7, @invoice8, @invoice9, @invoice10, @invoice11, @invoice12, @invoice13])
+    end
   end
+  
 
   describe 'model methods' do
     it '.enabled' do

@@ -14,17 +14,18 @@ class Merchants::ItemsController < ApplicationController
   end
   
   def update
-    merchant = Merchant.find(params[:merchant_id])
-    item = Item.find(params[:id])
+    @merchant = Merchant.find(params[:merchant_id])
+    @item = Item.find(params[:id])
 
-    if item.update(item_params)
+    if @item.update(item_params)
       if params[:commit] == 'Submit'
-        flash[:success] = "#{item.name} was successfully updated."
-        redirect_to merchant_item_path(merchant, item)
+        flash[:success] = "#{@item.name} was successfully updated."
+        redirect_to merchant_item_path(@merchant, @item)
       else
-        redirect_to merchant_items_path(merchant)
+        redirect_to merchant_items_path(@merchant)
       end
     else
+      # require 'pry'; binding.pry
       flash[:error] = "You messed up. Please try again"
       render :edit
     end

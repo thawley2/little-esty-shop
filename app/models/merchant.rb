@@ -3,6 +3,7 @@ class Merchant < ApplicationRecord
   has_many :invoice_items, through: :items
   has_many :invoices, through: :items
   has_many :customers, through: :invoices
+  has_many :transactions, through: :invoices
 
   def top_5_customers
     self.customers.joins(:transactions)
@@ -28,6 +29,15 @@ class Merchant < ApplicationRecord
     items.where(status: 1)
   end
 
+  def top_five_items
+    items.joins(invoices: :transactions)
+    .where(transactions: {result: 'success'})
+    .select("items.*, sum(invoice_items.unit_price * invoice_items.quantity) as tot_revenue")
+    .group(:id)
+    .order(tot_revenue: :desc)
+    .limit(5)
+  end
+
   def switch_enabled
     update(enabled: !enabled)
   end
@@ -40,5 +50,7 @@ class Merchant < ApplicationRecord
     where(enabled: :false)
   end
 
-
+  def uniq_invoices
+    invoices.distinct
+  end
 end

@@ -1,4 +1,10 @@
-<%= form_with model: model, local: true do |f| %>
-  <%= f.hidden_field :status, value: value %>
-  <%= f.submit button_text %>
-<% end %>
+<div id="item_<%= item_id %>">
+  <ul style="list-style-type:none">
+    <p><li><%= link_to item_name, link %> </li></p>
+
+    <%= form_with model: model, local: true do |f| %>
+      <%= f.hidden_field :status, value: value %>
+      <%= f.submit button_text %>
+    <% end %>
+  </ul>
+</div>
