@@ -53,4 +53,17 @@ class Merchant < ApplicationRecord
   def uniq_invoices
     invoices.distinct
   end
+
+  def self.top_five
+    order(total_revenue: :desc).limit(5)
+  end
+
+  def total_revenue
+    all = items.joins(invoices: :transactions)
+    .where(transactions: {result: 'success'})
+    .select("items.*, sum(invoice_items.unit_price * invoice_items.quantity) as tot_revenue")
+    .group(:id)
+
+    all.sum{|item|item.tot_revenue}
+  end
 end
