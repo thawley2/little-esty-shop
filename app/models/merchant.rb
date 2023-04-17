@@ -49,4 +49,8 @@ class Merchant < ApplicationRecord
   def self.disabled
     where(enabled: :false)
   end
+
+  def uniq_invoices
+    invoices.distinct
+  end
 end
