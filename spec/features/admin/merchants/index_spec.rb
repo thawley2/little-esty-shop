@@ -27,7 +27,7 @@ RSpec.describe 'Merchant Index' do
         visit admin_merchants_path
       
         within ".disabled_merchants .merchant#{merchant1.id}" do
-          click_button "Enable Merchant"
+          click_button "Enable #{merchant1.name}"
           expect(current_path).to eq(admin_merchants_path)
         end
 
@@ -35,16 +35,36 @@ RSpec.describe 'Merchant Index' do
         
         within ".enabled_merchants" do
           within ".merchant#{merchant2.id}" do
-            expect(page).to have_button("Disable Merchant")
+            expect(page).to have_button("Disable #{merchant2.name}")
           end
 
           within ".merchant#{merchant1.id}" do
-            click_button "Disable Merchant"
+            click_button "Disable #{merchant1.name}"
             expect(current_path).to eq(admin_merchants_path)
           end
         end
 
         expect(page).to have_content("Steve is Disabled")
+      end
+
+      it 'I see a link to create a new merchant with a default status of disabled' do
+        visit admin_merchants_path
+        
+        expect(page).not_to have_content('Marchand')
+  
+        click_link 'Create New Merchant'
+        expect(current_path).to eq(new_admin_merchant_path)
+  
+        fill_in 'Name', with: 'Marchand'
+        click_button 'Create Merchant'
+  
+        expect(current_path).to eq(admin_merchants_path)
+  
+        within '.disabled_merchants' do
+          expect(page).to have_content('Marchand')
+        end
+  
+        expect(page).to have_content('Marchand was successfully created')
       end
     end
   end
