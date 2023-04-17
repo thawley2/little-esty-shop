@@ -10,8 +10,8 @@ RSpec.describe Merchant, type: :model do
     it '#invoice_items_data, to return a list of items for a specific merchant on a specific invoice' do
       merchant3_test_data
 
-      expect(@merchant2.invoice_items_data(@invoice7.id)).to eq([@item6, @item11])
-      expect(@merchant3.invoice_items_data(@invoice7.id)).to eq([@item12])
+      expect(@merchant2.invoice_items_data(@invoice7.id)).to eq([@init1, @init8])
+      expect(@merchant3.invoice_items_data(@invoice7.id)).to eq([@init10])
       expect(@merchant4.invoice_items_data(@invoice7.id)).to eq([])
     end
 
