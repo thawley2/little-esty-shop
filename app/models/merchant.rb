@@ -62,9 +62,7 @@ class Merchant < ApplicationRecord
   end
 
   def inv_total_rev(invoice_id)
-require 'pry'; binding.pry
-    invoice_items.select("sum(invoice_items.quantity * invoice_items.unit_price)").where(invoice_items: {invoice_id: invoice_id}).group(:invoice_id)
+    invoice_items.where(invoice_items: {invoice_id: invoice_id})
+    .sum("invoice_items.quantity * invoice_items.unit_price")
   end
-
-  
 end
