@@ -53,4 +53,16 @@ class Merchant < ApplicationRecord
   def uniq_invoices
     invoices.distinct
   end
+
+  def invoice_items_data(invoice_id)
+    items.joins(:invoices)
+    .select("items.*, invoice_items.quantity, invoice_items.unit_price as sold_price, invoice_items.status as invitm_status")
+    .where(invoices: {id: invoice_id})
+    .distinct
+  end
+
+  def inv_total_rev(invoice_id)
+    invoice_items.where(invoice_items: {invoice_id: invoice_id})
+    .sum("invoice_items.quantity * invoice_items.unit_price")
+  end
 end

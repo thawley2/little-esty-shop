@@ -1,16 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe Merchant, type: :model do
-  before(:each) do
-    test_data
-    merchant2_test_data
-  end
   it { should have_many(:items) }
   it { should have_many(:invoice_items).through(:items)}
   it { should have_many(:invoices).through(:items)}
   it { should have_many(:customers).through(:invoices)}
-
+  
   describe 'instance methods' do
+    it '#invoice_items_data, to return a list of items for a specific merchant on a specific invoice' do
+      merchant3_test_data
+
+      expect(@merchant2.invoice_items_data(@invoice7.id)).to eq([@item6, @item11])
+      expect(@merchant3.invoice_items_data(@invoice7.id)).to eq([@item12])
+      expect(@merchant4.invoice_items_data(@invoice7.id)).to eq([])
+    end
+
+    it '#inv_total_rev can find the total revenue from an invoice for a specific merchant' do
+      expect(@merchant2.inv_total_rev(@invoice7.id)).to eq(17500)
+    end
+
+    before(:each) do
+      test_data
+      merchant2_test_data
+    end
     it '#top_5_customers' do
       expect(@merchant.top_5_customers).to match_array([@customer6, @customer2, @customer3, @customer4, @customer5])
     end
