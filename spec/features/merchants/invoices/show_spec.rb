@@ -45,5 +45,9 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       end
       expect(page).to_not have_content(@item12.name) 
     end
+
+    it 'I see the total revenue that will be generated from all of my items on the invoice' do
+      
+    end
   end
 end
