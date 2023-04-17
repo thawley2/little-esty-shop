@@ -1,5 +1,7 @@
 <h1>Merchants Index</h1>
 
+<p><%= link_to "Create Merchant", new_admin_merchant_path %>
+
 <div class="enabled_merchants">
   <% @merchants.enabled.each do |merchant| %>
     <%= render partial: 'merchant_partial', locals: { merchant: merchant } %>
@@ -11,3 +13,4 @@
     <%= render partial: 'merchant_partial', locals: { merchant: merchant } %>
   <% end %>
 </div>
+
