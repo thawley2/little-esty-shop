@@ -14,8 +14,9 @@ RSpec.describe Merchant, type: :model do
       expect(@merchant3.invoice_items_data(@invoice7.id)).to eq([@item12])
       expect(@merchant4.invoice_items_data(@invoice7.id)).to eq([])
     end
+
     it '#inv_total_rev can find the total revenue from an invoice for a specific merchant' do
-      expect(@merchant2.inv_total_rev(@invoice7.id)).to eq("17500")
+      expect(@merchant2.inv_total_rev(@invoice7.id)).to eq(17500)
     end
 
     before(:each) do
