@@ -43,6 +43,7 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
         expect(page).to have_content(@init8.unit_price)
         expect(page).to have_content(@init8.status)
       end
+      expect(page).to_not have_content(@item12.name) 
     end
   end
 end
