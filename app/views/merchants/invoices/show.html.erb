@@ -1,3 +1,21 @@
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
 <%= render partial: '/merchants/header', locals: {merchant: @merchant.name} %>
 
 <h3><b>Invoice #<%= @invoice.id %></b></h3>
@@ -18,11 +36,19 @@
     <th>Status</th>
   </tr>
   <% @merchant.invoice_items_data(@invoice.id).each do |item| %>
-    <tr>
+    <tr id="item_<%= item.id %>" >
       <td><%= item.name %></td>
       <td><%= item.quantity %></td>
       <td><%= item.sold_price %></td>
-      <td><%= item.invitm_status %></td>
+      <td>
+      <% if item.invitm_status == 0 %>
+        <%= "pending" %>
+      <% elsif item.invitm_status == 1 %>
+        <%= "packaged" %>
+      <% else %>
+        <%= "shipped" %>
+      <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
