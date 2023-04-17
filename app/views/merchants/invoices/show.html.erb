@@ -37,20 +37,12 @@ tr:nth-child(even) {
     <th>Unit Price</th>
     <th>Status</th>
   </tr>
-  <% @merchant.invoice_items_data(@invoice.id).each do |item| %>
-    <tr id="item_<%= item.id %>" >
-      <td><%= item.name %></td>
-      <td><%= item.quantity %></td>
-      <td><%= item.sold_price %></td>
-      <td>
-      <% if item.invitm_status == 0 %>
-        <%= "pending" %>
-      <% elsif item.invitm_status == 1 %>
-        <%= "packaged" %>
-      <% else %>
-        <%= "shipped" %>
-      <% end %>
-      </td>
+  <% @merchant.invoice_items_data(@invoice.id).each do |invitm| %>
+    <tr id="item_<%= invitm.id %>" >
+      <td><%= invitm.name %></td>
+      <td><%= invitm.quantity %></td>
+      <td><%= invitm.unit_price %></td>
+      <td><%= invitm.status%></td>
     </tr>
   <% end %>
 </table>
