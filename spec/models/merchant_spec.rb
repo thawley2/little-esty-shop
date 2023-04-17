@@ -62,6 +62,7 @@ RSpec.describe Merchant, type: :model do
       expect(@merchant2.top_five_items[2].tot_revenue).to eq(10000)
       expect(@merchant2.top_five_items[3].tot_revenue).to eq(1000)
       expect(@merchant2.top_five_items[4].tot_revenue).to eq(100)
+    end
 
     it 'switches merchant.enabled' do
       expect(@merchant.enabled?)
@@ -70,7 +71,13 @@ RSpec.describe Merchant, type: :model do
       @merchant.switch_enabled
       expect(@merchant.enabled?)
     end
+
+    it '#uniq_invoices' do
+      expect(@merchant.uniq_invoices).to eq([@invoice1, @invoice2, @invoice3, @invoice4, @invoice5, @invoice6])
+      expect(@merchant2.uniq_invoices).to eq([@invoice7, @invoice8, @invoice9, @invoice10, @invoice11, @invoice12, @invoice13])
+    end
   end
+  
 
   describe 'model methods' do
     it '.enabled' do
