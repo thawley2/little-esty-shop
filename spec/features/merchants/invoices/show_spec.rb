@@ -31,13 +31,13 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       visit merchant_invoice_path(@merchant2, @invoice7)
 
       expect(page).to have_content("Items on this Invoice:")
-      within "#item_#{@item6.id}" do
+      within "#item_#{@init1.id}" do
         expect(page).to have_content(@item6.name)
         expect(page).to have_content(@init1.quantity)
         expect(page).to have_content(@init1.unit_price)
         expect(page).to have_content(@init1.status)
       end
-      within "#item_#{@item11.id}" do
+      within "#item_#{@init8.id}" do
         expect(page).to have_content(@item11.name)
         expect(page).to have_content(@init8.quantity)
         expect(page).to have_content(@init8.unit_price)
