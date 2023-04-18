@@ -13,7 +13,6 @@ RSpec.describe 'Invoice Index' do
       expect(page).to have_link(@invoice5.id)
 
       click_link(@invoice6.id)
-      save_and_open_page
       expect(current_path).to eq(admin_invoice_path(@invoice6))
     end
   end
