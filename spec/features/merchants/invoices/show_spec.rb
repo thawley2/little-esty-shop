@@ -70,6 +70,12 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
 
         expect(current_path).to eq(merchant_invoice_path(@merchant2, @invoice7))
         expect(page).to have_selector("#invitm", text: 'packaged')
+
+        select('shipped', from: 'Status')
+        click_button("Update Item Status")
+
+        expect(current_path).to eq(merchant_invoice_path(@merchant2, @invoice7))
+        expect(page).to have_selector("#invitm", text: 'shipped')
       end
     end
   end
