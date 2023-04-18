@@ -42,7 +42,11 @@ tr:nth-child(even) {
       <td><%= invitm.name %></td>
       <td><%= invitm.quantity %></td>
       <td><%= invitm.unit_price %></td>
-      <td><%= invitm.status%></td>
+      <td id='invitm_<%= invitm.id %>'><%= form_with model: [@merchant, invitm], local: true do |f| %>
+        <%= f.select(:status, ['packaged', 'pending', 'shipped'], :selected => invitm.status) %>
+        <%= f.submit "Update Item Status" %>
+        <% end %>
+        </td>
     </tr>
   <% end %>
 </table>
