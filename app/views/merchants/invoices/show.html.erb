@@ -1,3 +1,21 @@
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
 <%= render partial: '/merchants/header', locals: {merchant: @merchant.name} %>
 
 <h3><b>Invoice #<%= @invoice.id %></b></h3>
@@ -5,5 +23,35 @@
 <p>Status: <%= @invoice.status %></p>
 <p>Created on: <%= @invoice.created_at.strftime("%B/%d/%Y") %>
 
+<p>Total Revenue: <%= number_to_currency(@merchant.inv_total_rev(@invoice.id)/100) %><p>
+
 <h4>Customer:</h4>
 <p><%= @invoice.customer.full_name %></p>
+
+<h4>Items on this Invoice:</h4>
+
+<table>
+  <tr>
+    <th>Item Name</th>
+    <th>Quantity</th>
+    <th>Unit Price</th>
+    <th>Status</th>
+  </tr>
+  <% @merchant.invoice_items_data(@invoice.id).each do |item| %>
+    <tr id="item_<%= item.id %>" >
+      <td><%= item.name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.sold_price %></td>
+      <td>
+      <% if item.invitm_status == 0 %>
+        <%= "pending" %>
+      <% elsif item.invitm_status == 1 %>
+        <%= "packaged" %>
+      <% else %>
+        <%= "shipped" %>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+  
