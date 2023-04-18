@@ -87,9 +87,5 @@ RSpec.describe Merchant, type: :model do
     it '.disabled' do
       expect(Merchant.disabled.none?{|mer| mer.enabled == true})
     end
-
-    it 'sss'do
-    expect(Merchant.top_five).to eq[]
-    end
   end
 end
