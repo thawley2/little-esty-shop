@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   resources :merchants, only: [] do
     resources :items, controller: 'merchants/items'
     resources :invoices, only: [:index, :show], controller: 'merchants/invoices'
+    resources :invoice_items, only: [:update], controller: 'merchants/invoice_items'
   end
 
   namespace :admin do
-    resources :invoices, only: [:show]
+    resources :invoices, only: [:show, :index]
     resources :merchants, except: [:destroy], controller: 'merchants'
   end
 end

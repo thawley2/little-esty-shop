@@ -31,13 +31,13 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       visit merchant_invoice_path(@merchant2, @invoice7)
 
       expect(page).to have_content("Items on this Invoice:")
-      within "#item_#{@item6.id}" do
+      within "#item_#{@init1.id}" do
         expect(page).to have_content(@item6.name)
         expect(page).to have_content(@init1.quantity)
         expect(page).to have_content(@init1.unit_price)
         expect(page).to have_content(@init1.status)
       end
-      within "#item_#{@item11.id}" do
+      within "#item_#{@init8.id}" do
         expect(page).to have_content(@item11.name)
         expect(page).to have_content(@init8.quantity)
         expect(page).to have_content(@init8.unit_price)
@@ -51,6 +51,32 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       visit merchant_invoice_path(@merchant2, @invoice7)
       
       expect(page).to have_content("Total Revenue: $175.00")
+    end
+  end
+
+  describe "I see that each invoice item status is a select field with it's current status selected" do
+    it 'can change the status of an item' do
+      merchant3_test_data
+      @init1.update(status: 0)
+      visit merchant_invoice_path(@merchant2, @invoice7)
+      
+      within "#item_#{@init1.id}" do
+        expect(page).to have_selector("#invitm", text: "pending")
+        select('packaged', from: 'Status')
+
+        expect(page).to have_button("Update Item Status")
+
+        click_button("Update Item Status")
+
+        expect(current_path).to eq(merchant_invoice_path(@merchant2, @invoice7))
+        expect(page).to have_selector("#invitm", text: 'packaged')
+
+        select('shipped', from: 'Status')
+        click_button("Update Item Status")
+
+        expect(current_path).to eq(merchant_invoice_path(@merchant2, @invoice7))
+        expect(page).to have_selector("#invitm", text: 'shipped')
+      end
     end
   end
 end

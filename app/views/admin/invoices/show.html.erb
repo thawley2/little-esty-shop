@@ -1,0 +1,16 @@
+<h1>Admin Invoice Show Page</h1>
+<h3>Invoice <%= @invoice.id %></h3>
+<div class="invoice_info">
+  <p>Status: <%= @invoice.status %></p>
+  <p>Date: <%= @invoice.format_date %></p>
+  <p>Customer: <%= @invoice.customer.full_name %></p>
+</div>
+<h3>Invoice Items</h3>
+<div class="invoice_items">
+  <% @invoice.invoice_items.each do |inv_item| %>
+    <h4><%= inv_item.item.name %></h4>
+      <p>Qty: <%= inv_item.quantity %></p>
+      <p>Price: $<%= (inv_item.unit_price / 100.0) %></p>
+      <p>Status: <%= inv_item.status %></p>
+  <% end %>
+</div>

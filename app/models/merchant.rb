@@ -64,9 +64,9 @@ class Merchant < ApplicationRecord
   end
 
   def invoice_items_data(invoice_id)
-    items.joins(:invoices)
-    .select("items.*, invoice_items.quantity, invoice_items.unit_price as sold_price, invoice_items.status as invitm_status")
-    .where(invoices: {id: invoice_id})
+    invoice_items
+    .select("invoice_items.*, items.name")
+    .where(invoice_id: invoice_id)
     .distinct
   end
 
@@ -74,4 +74,12 @@ class Merchant < ApplicationRecord
     invoice_items.where(invoice_items: {invoice_id: invoice_id})
     .sum("invoice_items.quantity * invoice_items.unit_price")
   end
+
+  # def best_day
+  #   invoices.joins(:invoice_items)
+  #   .select("invoices.*, invoice.created_at as date, sum(invoice_items.quantity * invoice_items.unit_price) as tot_rev, invoice_items.status as invitm_status")
+  #   .group(:id)
+  #   .order('tot_rev desc')
+  #   require 'pry'; binding.pry
+  # end
 end

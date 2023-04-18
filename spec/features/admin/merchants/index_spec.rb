@@ -69,14 +69,19 @@ RSpec.describe 'Merchant Index' do
         expect(page).to have_content('Marchand was successfully created')
       end
 
-      it "Then I see the names of the top 5 merchants by total revenue            generated    and I see that each merchant name links to the admin merchant show page for that merchant and I see the total revenue generated next to  each merchant name" do
+      it "Then I see the names of the top 5 merchants by total revenue generated 
+      and I see that each merchant name links to the admin merchant show page 
+      for that merchant and I see the total revenue generated next to  each merchant name" do
         visit admin_merchants_path
-        save_and_open_page
         
         within(".top-five-merchants") do
-          expect(page).to have_link(@merchant6.name)
+          @top_five.each do |merch|
+            expect(page).to have_link(merch.name)
+            # expect(page).to have_content("Top selling date for #{merch.name} was #{merch.best_day}")
+          end
         
           expect(@merchant6.name).to appear_before(@merchant5.name)
+          
           expect(@merchant5.name).to appear_before(@merchant4.name)
           expect(@merchant4.name).to appear_before(@merchant3.name)
           expect(@merchant3.name).to appear_before(@merchant2.name)
