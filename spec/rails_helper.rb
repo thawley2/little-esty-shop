@@ -95,6 +95,29 @@ def merchant2_test_data
   @init9 = create(:invoice_item, item: @item11, invoice: @invoice9, unit_price: 525, quantity: 25)
 end
 
+def top_five_merchants
+  @merchant1 = create(:merchant) 
+  @merchant2 = create(:merchant) 
+  @merchant3 = create(:merchant) 
+  @merchant4 = create(:merchant) 
+  @merchant5 = create(:merchant) 
+  @merchant6 = create(:merchant) 
+
+  create_invoice_items_and_transactions(@merchant1, 1000)
+  create_invoice_items_and_transactions(@merchant2, 2000)
+  create_invoice_items_and_transactions(@merchant3, 3000)
+  create_invoice_items_and_transactions(@merchant4, 4000)
+  create_invoice_items_and_transactions(@merchant5, 5000)
+  create_invoice_items_and_transactions(@merchant6, 6000)
+end
+
+def create_invoice_items_and_transactions(merchant, revenue)
+  item = create(:item, merchant: merchant)
+  invoice = create(:invoice)
+  create(:invoice_item, item: item, invoice: invoice, quantity: 1, unit_price: revenue)
+  create(:transaction, result: 'success', invoice: invoice)
+end
+
 def merchant3_test_data
   @merchant2 = create(:merchant)
   @merchant3 = create(:merchant)
@@ -147,6 +170,7 @@ def merchant3_test_data
   @init9 = create(:invoice_item, item: @item11, invoice: @invoice9, unit_price: 525, quantity: 25)
   @init10 = create(:invoice_item, item: @item12, invoice: @invoice7, unit_price: 525, quantity: 25)
 end
+
 # item11, item8, item6, item9, item12
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'

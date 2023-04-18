@@ -1,5 +1,15 @@
 <h1>Merchants Index</h1>
 
+<div class="top-five-merchants">
+  <h4>Top 5 Customers </h4>
+  <ol>
+  <% @top_five.each do |merchant| %>
+  <li><%= link_to merchant.name, admin_merchant_path(merchant) %>
+  <%= number_to_currency(merchant.tot_revenue / 100) %></li>
+  <% end %>
+  </ol>
+  </div>
+
 <p><%= link_to 'Create New Merchant', new_admin_merchant_path %>
 
 <div class="disabled_merchants">
@@ -15,3 +25,5 @@
     <%= render partial: 'merchant_partial', locals: { merchant: merchant } %>
   <% end %>
 </div>
+
+
