@@ -59,17 +59,17 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       merchant3_test_data
       @init1.update(status: 0)
       visit merchant_invoice_path(@merchant2, @invoice7)
-      save_and_open_page
+      
       within "#item_#{@init1.id}" do
-        expect(page).to have_selector("#invitm_#{@init1.id}", text: "pending")
-        select 'packaged', from: 'status'
+        expect(page).to have_selector("#invitm", text: "pending")
+        select('packaged', from: 'Status')
 
         expect(page).to have_button("Update Item Status")
 
         click_button("Update Item Status")
 
         expect(current_path).to eq(merchant_invoice_path(@merchant2, @invoice7))
-        expect(page).to have_selector(text: 'packaged')
+        expect(page).to have_selector("#invitm", text: 'packaged')
       end
     end
   end
