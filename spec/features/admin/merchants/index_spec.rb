@@ -96,13 +96,3 @@ RSpec.describe 'Merchant Index' do
     end
   end
 end
-# As an admin,
-# When I visit the admin merchants index
-# Then I see the names of the top 5 merchants by total revenue generated
-# And I see that each merchant name links to the admin merchant show page for that merchant
-# And I see the total revenue generated next to each merchant name
-
-# Notes on Revenue Calculation:
-# - Only invoices with at least one successful transaction should count towards revenue
-# - Revenue for an invoice should be calculated as the sum of the revenue of all invoice items
-# - Revenue for an invoice item should be calculated as the invoice item unit price multiplied by the quantity (do not use the item unit price)
