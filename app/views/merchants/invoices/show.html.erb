@@ -16,7 +16,7 @@ tr:nth-child(even) {
 }
 </style>
 
-<%= render partial: '/merchants/header', locals: {merchant: @merchant.name} %>
+<%= render partial: '/merchants/header', locals: {merchant: @merchant.name, merchant_id: @merchant.id} %>
 
 <h3><b>Invoice #<%= @invoice.id %></b></h3>
 
@@ -42,8 +42,9 @@ tr:nth-child(even) {
       <td><%= invitm.name %></td>
       <td><%= invitm.quantity %></td>
       <td><%= invitm.unit_price %></td>
-      <td id='invitm_<%= invitm.id %>'><%= form_with model: [@merchant, invitm], local: true do |f| %>
-        <%= f.select(:status, ['packaged', 'pending', 'shipped'], :selected => invitm.status) %>
+      <td id='invitm'><%= form_with model: [@merchant, invitm], local: true do |f| %>
+        <%= f.label :status, hidden: true%>
+        <%= f.select :status, ['packaged', 'pending', 'shipped'], selected: invitm.status %>
         <%= f.submit "Update Item Status" %>
         <% end %>
         </td>
