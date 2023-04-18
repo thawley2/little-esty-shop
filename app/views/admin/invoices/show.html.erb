@@ -1,0 +1,7 @@
+<h1>Admin Invoice Show Page</h1>
+<h3>Invoice <%= @invoice.id %></h3>
+<div class="info">
+  <p>Status: <%= @invoice.status %></p>
+  <p>Date: <%= @invoice.format_date %></p>
+  <p>Customer: <%= @invoice.customer.full_name %></p>
+</div>

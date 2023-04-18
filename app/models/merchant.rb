@@ -74,4 +74,12 @@ class Merchant < ApplicationRecord
     invoice_items.where(invoice_items: {invoice_id: invoice_id})
     .sum("invoice_items.quantity * invoice_items.unit_price")
   end
+
+  # def best_day
+  #   invoices.joins(:invoice_items)
+  #   .select("invoices.*, invoice.created_at as date, sum(invoice_items.quantity * invoice_items.unit_price) as tot_rev, invoice_items.status as invitm_status")
+  #   .group(:id)
+  #   .order('tot_rev desc')
+  #   require 'pry'; binding.pry
+  # end
 end
