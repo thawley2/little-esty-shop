@@ -5,6 +5,9 @@ RSpec.describe 'Merchant Index' do
     let!(:merchant1) {Merchant.create!(name:'Steve', enabled: false)}
     let!(:merchant2) {Merchant.create!(name:'Fred', enabled: true)}
   
+    before do
+      top_five_merchants  
+    end
 
     describe 'When I visit the admin merchants index' do
       it 'I see the name of each merchant in the system' do
@@ -65,15 +68,35 @@ RSpec.describe 'Merchant Index' do
   
         expect(page).to have_content('Marchand was successfully created')
       end
+
+      it "Then I see the names of the top 5 merchants by total revenue            generated    and I see that each merchant name links to the admin merchant show page for that merchant and I see the total revenue generated next to  each merchant name" do
+        visit admin_merchants_path
+        save_and_open_page
+        
+        within(".top-five-merchants") do
+          expect(page).to have_link(@merchant6.name)
+        
+          expect(@merchant6.name).to appear_before(@merchant5.name)
+          expect(@merchant5.name).to appear_before(@merchant4.name)
+          expect(@merchant4.name).to appear_before(@merchant3.name)
+          expect(@merchant3.name).to appear_before(@merchant2.name)
+          expect(page).to have_content('$50.00')
+          expect(page).to have_content('$30.00')
+          
+          click_link(@merchant5.name)
+          expect(current_path).to eq(admin_merchant_path(@merchant5))
+        end
+      end
     end
   end
 end
 # As an admin,
 # When I visit the admin merchants index
-# I see a link to create a new merchant.
-# When I click on the link,
-# I am taken to a form that allows me to add merchant information.
-# When I fill out the form I click ‘Submit’
-# Then I am taken back to the admin merchants index page
-# And I see the merchant I just created displayed
-# And I see my merchant was created with a default status of disabled.
+# Then I see the names of the top 5 merchants by total revenue generated
+# And I see that each merchant name links to the admin merchant show page for that merchant
+# And I see the total revenue generated next to each merchant name
+
+# Notes on Revenue Calculation:
+# - Only invoices with at least one successful transaction should count towards revenue
+# - Revenue for an invoice should be calculated as the sum of the revenue of all invoice items
+# - Revenue for an invoice item should be calculated as the invoice item unit price multiplied by the quantity (do not use the item unit price)
