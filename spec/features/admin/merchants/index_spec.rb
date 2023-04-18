@@ -74,7 +74,6 @@ RSpec.describe 'Merchant Index' do
       and I see that each merchant name links to the admin merchant show page 
       for that merchant and I see the total revenue generated next to  each merchant name" do
         visit admin_merchants_path
-        save_and_open_page
         
         within(".top-five-merchants") do
           @top_five.each do |merch|
