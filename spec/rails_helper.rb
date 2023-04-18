@@ -96,13 +96,14 @@ def merchant2_test_data
 end
 
 def top_five_merchants
+  
   @merchant1 = create(:merchant) 
   @merchant2 = create(:merchant) 
   @merchant3 = create(:merchant) 
   @merchant4 = create(:merchant) 
   @merchant5 = create(:merchant) 
   @merchant6 = create(:merchant) 
-
+  @top_five = [@merchant2, @merchant3, @merchant4, @merchant5, @merchant6]
   create_invoice_items_and_transactions(@merchant1, 1000)
   create_invoice_items_and_transactions(@merchant2, 2000)
   create_invoice_items_and_transactions(@merchant3, 3000)
