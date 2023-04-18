@@ -59,7 +59,6 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       merchant3_test_data
       @init1.update(status: 0)
       visit merchant_invoice_path(@merchant2, @invoice7)
-      save_and_open_page
       
       within "#item_#{@init1.id}" do
         expect(page).to have_selector("#invitm", text: "pending")
