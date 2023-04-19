@@ -88,6 +88,10 @@ RSpec.describe Merchant, type: :model do
       expect(@merchant.uniq_invoices).to match_array([@invoice1, @invoice2, @invoice3, @invoice4, @invoice5, @invoice6])
       expect(@merchant2.uniq_invoices).to match_array([@invoice7, @invoice8, @invoice9, @invoice10, @invoice11, @invoice12, @invoice13])
     end
+
+    it '#best_day' do
+      expect(@merchant.best_day.class).to eq(ActiveSupport::TimeWithZone)
+    end
   end
   
 
