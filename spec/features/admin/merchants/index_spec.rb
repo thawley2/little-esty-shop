@@ -59,7 +59,7 @@ RSpec.describe 'Merchant Index' do
   
         fill_in 'Name', with: 'Marchand'
         click_button 'Create Merchant'
-  
+
         expect(current_path).to eq(admin_merchants_path)
   
         within '.disabled_merchants' do
