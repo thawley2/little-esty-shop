@@ -3,6 +3,10 @@ class Admin::MerchantsController < ApplicationController
     @merchants = Merchant.all
   end
 
+  def show
+    @merchant = Merchant.find(params[:id])
+  end
+
   def new
     @merchant = Merchant.new
   end
@@ -17,10 +21,6 @@ class Admin::MerchantsController < ApplicationController
       flash[:alert] = "You messed up. Try again"
       render :new
     end
-  end
-
-  def show
-    @merchant = Merchant.find(params[:id])
   end
 
   def edit

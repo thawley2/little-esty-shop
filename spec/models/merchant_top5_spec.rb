@@ -20,7 +20,4 @@ RSpec.describe Merchant, type: :model do
       expect(Merchant.top_five.length).to eq(5)
     end
   end
-
-  # Helper method to create invoice items and transactions with specified revenue for a merchant
-  
 end
