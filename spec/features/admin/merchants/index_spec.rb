@@ -46,7 +46,6 @@ RSpec.describe 'Merchant Index' do
             expect(current_path).to eq(admin_merchants_path)
           end
         end
-
         expect(page).to have_content("Steve is Disabled")
       end
 
