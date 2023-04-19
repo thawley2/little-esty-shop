@@ -7,14 +7,24 @@
 ## Collaborators
 ___
 - [Thomas Hawley](https://github.com/thawley2)
-- [Thomas Hawley](https://github.com/sicknacco)
+- [Nick Sacco](https://github.com/sicknacco)
 - [Andrew Bowman](https://github.com/abwmn)
 - [Amy Spears](https://github.com/amspears007)
 
 ## Work Completed
 ___
+- [Schema Diagram](https://dbdiagram.io/d/64348ed08615191cfa8ccd17)
 - Utilized ActiveRecord joins, aggregates, and grouping to fulfill user story functionality
 - Implemented FactoryBot and Faker to support testing
+- Create tasks to load data from CSVs into our database
+
+## Future Refactoring
+---
+1. Make module for similar model methods
+1. Styling to optimize user experience.
+1. Create normalized test data across all test files
+
+
 
 
 ## Learning Goals
@@ -54,7 +64,7 @@ This project requires Ruby 2.7.4.
 1. [Extensions](./doc/extensions.md)
 1. [Evaluation](./doc/evaluation.md)
 
-[Diagram](https://dbdiagram.io/d/64348ed08615191cfa8ccd17)
+
 
 
 
