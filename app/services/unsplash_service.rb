@@ -4,7 +4,7 @@ class UnsplashService
   end
 
   def project_logo
-    get_url("")
+    get_url('https://api.unsplash.com/photos/pFqrYbhIAXs/?client_id=1cd3V-4rbtUVO3VE00Xus_BcKE95xqwK4sdttc4GFsY')
   end
 
   def get_url(url)
