@@ -77,7 +77,6 @@ RSpec.describe 'Merchant Index' do
         within(".top-five-merchants") do
           @top_five.each do |merch|
             expect(page).to have_link(merch.name)
-            # expect(page).to have_content("Top selling date for #{merch.name} was #{merch.best_day}")
           end
         
           expect(@merchant6.name).to appear_before(@merchant5.name)
