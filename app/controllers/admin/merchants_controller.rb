@@ -13,10 +13,12 @@ class Admin::MerchantsController < ApplicationController
 
   def create
     @merchant = Merchant.new(merchant_params)
-    @merchant.switch_enabled
+
     if @merchant.save
+      @merchant.switch_enabled
       flash[:notice] = "#{@merchant.name} was successfully created"
       redirect_to admin_merchants_path
+      
     else
       flash[:alert] = "You messed up. Try again"
       render :new
@@ -45,16 +47,6 @@ class Admin::MerchantsController < ApplicationController
     end
   end
 
-    def new
-      @merchant = Merchant.new
-    end
-
-    def create
-      @merchant = Merchant.new(merchant_params)
-      if @merchant.save
-        redirect_to admin_merchants_path
-      end
-    end
 
   private
   def merchant_params
