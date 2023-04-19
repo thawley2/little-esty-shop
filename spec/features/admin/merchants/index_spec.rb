@@ -59,7 +59,7 @@ RSpec.describe 'Merchant Index' do
   
         fill_in 'Name', with: 'Marchand'
         click_button 'Create Merchant'
-  
+
         expect(current_path).to eq(admin_merchants_path)
   
         within '.disabled_merchants' do
@@ -77,7 +77,7 @@ RSpec.describe 'Merchant Index' do
         within(".top-five-merchants") do
           @top_five.each do |merch|
             expect(page).to have_link(merch.name)
-            # expect(page).to have_content("Top selling date for #{merch.name} was #{merch.best_day}")
+            expect(page).to have_content("Top selling date for #{merch.name} was #{merch.best_day.strftime('%B %d, %Y')}")
           end
         
           expect(@merchant6.name).to appear_before(@merchant5.name)
