@@ -4,6 +4,19 @@
 
 "Little Esty Shop" is a group project that requires students to build a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices.
 
+## Collaborators
+___
+- [Thomas Hawley](https://github.com/thawley2)
+- [Thomas Hawley](https://github.com/sicknacco)
+- [Andrew Bowman](https://github.com/abwmn)
+- [Amy Spears](https://github.com/amspears007)
+
+## Work Completed
+___
+- Utilized ActiveRecord joins, aggregates, and grouping to fulfill user story functionality
+- Implemented FactoryBot and Faker to support testing
+
+
 ## Learning Goals
 - Practice designing a normalized database schema and defining model relationships
 - Utilize advanced routing techniques including namespacing to organize and group like functionality together.
@@ -43,12 +56,5 @@ This project requires Ruby 2.7.4.
 
 [Diagram](https://dbdiagram.io/d/64348ed08615191cfa8ccd17)
 
-## Contributors
-___
-
-- Andrew Bowman  [GitHub](https://github.com/abwmn)
-- Thomas Hawley [GitHub](https://github.com/thawley2)
-- Nick Sacco [GitHub](https://github.com/sicknacco)
-- Amy Spears [GitHub](https://github.com/amspears007)
 
 
