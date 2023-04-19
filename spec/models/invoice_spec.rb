@@ -23,4 +23,12 @@ RSpec.describe Invoice, type: :model do
       expect(@invoice1.format_date).to eq("Monday, February 27, 2023")
     end
   end
+
+  describe '#total_revenue' do
+    it 'returns the total revenue as an integer for all invoice_items linked to an invoice' do
+      @inv_itm1.update(unit_price: 1500, quantity: 5)
+      @inv_itm2.update(unit_price: 2500, quantity: 17)
+      expect(@invoice1.total_revenue).to eq(7500)
+    end
+  end
 end
