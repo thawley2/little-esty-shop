@@ -48,6 +48,7 @@ group :development, :test do
   gem 'net-http'
   gem 'faker'
   gem 'factory_bot_rails'
+  gem 'httparty'
 end
 
 group :development do
