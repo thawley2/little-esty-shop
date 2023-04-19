@@ -82,7 +82,4 @@ class Merchant < ApplicationRecord
     .limit(1)
     .pluck('invoices.created_at').first
   end
-  
-  
-  
 end
