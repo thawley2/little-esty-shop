@@ -25,7 +25,6 @@ class Merchants::ItemsController < ApplicationController
         redirect_to merchant_items_path(@merchant)
       end
     else
-      # require 'pry'; binding.pry
       flash[:error] = "You messed up. Please try again"
       render :edit
     end
