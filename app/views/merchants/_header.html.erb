@@ -1,3 +1,7 @@
 <h1>Little Esty Shop</h1>
 
 <h2><%= merchant %></h2>
+
+<%= link_to "Dashboard", merchant_dashboard_path(merchant_id) %>
+<%= link_to "My Items", merchant_items_path(merchant_id) %>
+<%= link_to "My Invoices", merchant_invoices_path(merchant_id) %>

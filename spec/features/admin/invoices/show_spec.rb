@@ -28,10 +28,26 @@ RSpec.describe 'Invoice Index' do
 
       expect(page).to have_content("Total Revenue: #{@invoice1.total_revenue}")
     end
+
+    it "I see that each invoice status is a select field with it's current status selected and can change status of an invoice" do
+      test_data
+      visit admin_invoice_path(@invoice1)
+
+      expect(page).to have_selector(".invoice_info", text: @invoice1.status)
+      select('completed', from: 'Status')
+
+      expect(page).to have_button("Update Invoice Status")
+      click_button("Update Invoice Status")
+
+      expect(current_path).to eq(admin_invoice_path(@invoice1))
+      expect(page).to have_selector(".invoice_info", text: 'in progress')
+
+      select('completed', from: 'Status')
+      click_button("Update Invoice Status")
+
+      expect(current_path).to eq(admin_invoice_path(@invoice1))
+      expect(page).to have_selector(".invoice_info", text: 'completed')
+    end
   end
 end
 
-# Item name
-# The quantity of the item ordered
-# The price the Item sold for
-# The Invoice Item status
