@@ -7,7 +7,6 @@ class Merchants::ItemsController < ApplicationController
     @merchant = Merchant.find(params[:merchant_id])
     @item = Item.find(params[:id])
     @item_image = ItemSearch.new.item_info(@item.name)
-    require 'pry'; binding.pry
   end
 
   def edit

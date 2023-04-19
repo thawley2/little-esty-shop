@@ -9,4 +9,3 @@ class ItemSearch
     UnsplashService.new
   end
 end
-item[:results].first[:urls][:thumb]

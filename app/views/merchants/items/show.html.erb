@@ -2,6 +2,9 @@
 
 <h2><b><%= @item.name %></b></h2>
 
+<img src= <%= "#{@item_image.image_url}"%> alt="Item Image" width=auto height="200">
+
+
 <p>Description: <%= @item.description %></p>
 <p>Current Price: <%= number_to_currency(@item.unit_price/100) %></p>
 <p><%= link_to 'Update Item', edit_merchant_item_path(@merchant, @item) %></p>
