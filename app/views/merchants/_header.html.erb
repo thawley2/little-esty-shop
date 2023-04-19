@@ -1,7 +1,20 @@
+<style>
+h1 {
+  text-align: center; 
+}
+
+nav {
+  float: right;
+  font-size: 20px;
+}
+</style>
+
 <h1>Little Esty Shop</h1>
 
-<h2><%= merchant %></h2>
-
+<h2><%= merchant %>
+<nav>
 <%= link_to "Dashboard", merchant_dashboard_path(merchant_id) %>
 <%= link_to "My Items", merchant_items_path(merchant_id) %>
 <%= link_to "My Invoices", merchant_invoices_path(merchant_id) %>
+</nav>
+</h2>
