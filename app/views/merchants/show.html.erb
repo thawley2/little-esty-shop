@@ -9,6 +9,7 @@ h3 {
 </style>
 
 <%= render partial: '/merchants/header', locals: {merchant: @merchant.name, merchant_id: @merchant} %>
+<img src= <%= "#{@merchant_image.image_url}"%> alt="Item Image" width=auto height="200">
 
 <section id='fav_customers'>
 <h3>Favorite Customers</h3>
