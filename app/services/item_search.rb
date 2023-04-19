@@ -1,11 +1,11 @@
 class ItemSearch
   
-  def item_info(item_name)
-    item = service.item_image(item_name)
+  def self.item_info(item_name)
+    item = self.service.item_image(item_name)
     ItemImage.new(item)
   end
 
-  def service
+  def self.service
     UnsplashService.new
   end
 end
