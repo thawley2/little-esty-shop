@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# require 'lib/tasks/csv_load.rake'
 
 Customer.destroy_all
 Merchant.destroy_all
