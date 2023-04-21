@@ -22,6 +22,7 @@ RSpec.describe '/merchants/:id/bulk_discounts#index', type: :feature do
         expect(page).to have_content("Discount Percentage: 20%")
         expect(page).to have_content("Quantity Threshold: #{@discount2.quantity_threshold}")
       end
+      expect(page).to_not have_content(@discount3.name)
 
     end
   end
