@@ -5,6 +5,7 @@ RSpec.describe Merchant, type: :model do
   it { should have_many(:invoice_items).through(:items)}
   it { should have_many(:invoices).through(:items)}
   it { should have_many(:customers).through(:invoices)}
+  it { should have_many(:bulk_discounts)}
   
   describe 'instance methods' do
     it '#invoice_items_data, to return a list of items for a specific merchant on a specific invoice' do
