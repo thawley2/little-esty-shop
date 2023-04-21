@@ -7,6 +7,9 @@ def test_data
   @item4 = create(:item, merchant: @merchant)
   @item5 = create(:item, merchant: @merchant)
 
+  @discount1 = create(:bulk_discount, merchant: @merchant, percent_discount: 0.3)
+  @discount2 = create(:bulk_discount, merchant: @merchant, percent_discount: 0.2)
+
   @customer1 = create(:customer)
   @customer2 = create(:customer)
   @customer3 = create(:customer)

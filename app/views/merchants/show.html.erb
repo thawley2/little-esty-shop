@@ -11,6 +11,8 @@ h3 {
 <%= render partial: '/merchants/header', locals: {merchant: @merchant.name, merchant_id: @merchant} %>
 <img src= <%= "#{@merchant_image.image_url}"%> alt="Item Image" width=auto height="200">
 
+<p><%= link_to 'My Discounts', merchant_bulk_discounts_path(@merchant)%></p>
+
 <section id='fav_customers'>
 <h3>Favorite Customers</h3>
 <ol>

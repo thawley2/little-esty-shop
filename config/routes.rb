@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :items, controller: 'merchants/items'
     resources :invoices, only: [:index, :show], controller: 'merchants/invoices'
     resources :invoice_items, only: [:update], controller: 'merchants/invoice_items'
+    resources :bulk_discounts, only: :index, controller: 'merchants/bulk_discounts'
   end
 
   namespace :admin do
