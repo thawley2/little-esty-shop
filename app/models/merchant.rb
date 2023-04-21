@@ -3,7 +3,7 @@ class Merchant < ApplicationRecord
   has_many :invoice_items, through: :items
   has_many :invoices, through: :items
   has_many :customers, through: :invoices
-  has_many :transactions, through: :invoices
+  has_many :bulk_discounts
 
   def top_5_customers
     self.customers.joins(:transactions)
