@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     resources :items, controller: 'merchants/items'
     resources :invoices, only: [:index, :show], controller: 'merchants/invoices'
     resources :invoice_items, only: [:update], controller: 'merchants/invoice_items'
-    resources :bulk_discounts, only: [:index, :new], controller: 'merchants/bulk_discounts'
+    resources :bulk_discounts, only: [:index, :new, :create], controller: 'merchants/bulk_discounts'
   end
 
-  resources :bulk_discounts, except: [:index, :new]
+  resources :bulk_discounts, except: [:index, :new, :create]
 
   namespace :admin do
     resources :invoices, only: [:show, :index, :update]
