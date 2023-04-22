@@ -45,5 +45,31 @@ RSpec.describe '/merchants/:id/bulk_discounts#index', type: :feature do
 
       expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant))
     end
+
+    it 'I see a delete button next to each discount listed' do
+      visit merchant_bulk_discounts_path(@merchant)
+
+      within "#disc_#{@discount1.id}" do
+        expect(page).to have_button('Delete Discount')
+      end
+    
+      within "#disc_#{@discount2.id}" do
+        expect(page).to have_button('Delete Discount')
+      end
+    
+    end
+
+    it 'When I click on the delete button for a discount I am taken back to the index page and the discount is no longer there' do
+      visit merchant_bulk_discounts_path(@merchant)
+
+      expect(page).to have_link(@discount1.name)
+
+      within "#disc_#{@discount1.id}" do
+        click_button 'Delete Discount'
+
+        expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
+      end
+      expect(page).to_not have_link(@discount1.name)
+    end
   end
 end
