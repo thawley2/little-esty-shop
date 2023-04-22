@@ -30,6 +30,7 @@ RSpec.describe "/merchants/:id/bulk_discounts/new#new", type: :feature do
     end
 
     it 'When I leave a field empty and click submit' do
+      visit new_merchant_bulk_discount_path(@merchant)
       fill_in 'Discount Name', with: 'Flash Deal'
       fill_in 'Quantity Threshold', with: 5
 
