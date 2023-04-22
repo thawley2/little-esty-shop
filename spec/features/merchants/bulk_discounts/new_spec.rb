@@ -26,6 +26,20 @@ RSpec.describe "/merchants/:id/bulk_discounts/new#new", type: :feature do
       click_button 'Create Bulk discount'
 
       expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
+      expect(page).to have_content('Discount Name: Flash Deal')
+    end
+
+    it 'When I leave a field empty and click submit' do
+      fill_in 'Discount Name', with: 'Flash Deal'
+      fill_in 'Quantity Threshold', with: 5
+
+      click_button 'Create Bulk discount'
+
+      expect(page).to have_field("Discount Name")
+      expect(page).to have_field("Percent Discount range:(0.05-1.00)")
+      expect(page).to have_field("Quantity Threshold")
+      expect(page).to have_button("Create Bulk discount")
+      expect(page).to have_content('Please fill out all required fields')
     end
   end
 end
