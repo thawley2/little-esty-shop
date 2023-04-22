@@ -33,7 +33,7 @@ RSpec.describe '/merchants/:id/bulk_discounts#index', type: :feature do
 
       click_link("#{@discount1.name} discount")
 
-      expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount1))
+      expect(current_path).to eq(bulk_discount_path(@discount1))
     end
 
     it 'I see a link to create a new discount' do
