@@ -8,9 +8,9 @@ def test_data
   @item4 = create(:item, merchant: @merchant)
   @item5 = create(:item, merchant: @merchant)
 
-  @discount1 = create(:bulk_discount, merchant: @merchant, percent_discount: 0.3)
-  @discount2 = create(:bulk_discount, merchant: @merchant, percent_discount: 0.2)
-  @discount3 = create(:bulk_discount, merchant: @merchant2, percent_discount: 0.45)
+  @discount1 = create(:bulk_discount, merchant: @merchant, percent_discount: 0.3, name: 'Memorial Day')
+  @discount2 = create(:bulk_discount, merchant: @merchant, percent_discount: 0.2, name: 'Christmas Day')
+  @discount3 = create(:bulk_discount, merchant: @merchant2, percent_discount: 0.45, name: 'Sunday')
 
   @customer1 = create(:customer)
   @customer2 = create(:customer)

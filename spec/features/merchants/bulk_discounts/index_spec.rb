@@ -33,8 +33,17 @@ RSpec.describe '/merchants/:id/bulk_discounts#index', type: :feature do
 
       click_link("#{@discount1.name} discount")
 
-      expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount1))
-      expect(page).to have_content("#{@discount1.name} discount")
+      expect(current_path).to eq(bulk_discount_path(@discount1))
+    end
+
+    it 'I see a link to create a new discount' do
+      visit merchant_bulk_discounts_path(@merchant)
+
+      expect(page).to have_link('Create New Discount')
+
+      click_link 'Create New Discount'
+
+      expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant))
     end
   end
 end
