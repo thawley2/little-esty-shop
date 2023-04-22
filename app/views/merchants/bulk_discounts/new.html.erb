@@ -1,6 +1,6 @@
 <h1><%= @merchant.name %> New Discount</h1>
 
-<%= form_with url: merchant_bulk_discounts_path(@merchant), local: true do |f| %>
+<%= form_with model: [@merchant, @discount], local: true do |f| %>
   <%= f.label :name, "Discount Name" %>
   <p><%= f.text_field :name %></p>
   <%= f.label :percent_discount, "Percent Discount range:(0.05-1.00)" %>
