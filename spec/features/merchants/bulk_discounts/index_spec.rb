@@ -23,7 +23,18 @@ RSpec.describe '/merchants/:id/bulk_discounts#index', type: :feature do
         expect(page).to have_content("Quantity Threshold: #{@discount2.quantity_threshold}")
       end
       expect(page).to_not have_content(@discount3.name)
+    end
 
+    it 'Each of the discounts names is a link to their show page' do
+      visit merchant_bulk_discounts_path(@merchant)
+
+      expect(page).to have_link("#{@discount1.name} discount")
+      expect(page).to have_link("#{@discount2.name} discount")
+
+      click_link("#{@discount1.name} discount")
+
+      expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount1))
+      expect(page).to have_content("#{@discount1.name} discount")
     end
   end
 end
