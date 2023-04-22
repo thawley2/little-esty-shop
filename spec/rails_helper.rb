@@ -165,6 +165,15 @@ def merchant3_test_data
   @tran11 = create(:transaction, result: 'success', invoice: @invoice7)
   @tran13 = create(:transaction, result: 'success', invoice: @invoice7)
   
+  @discount1 = create(:bulk_discount, percent_discount: 0.10, quantity_threshold: 15, merchant: @merchant2)
+  #merchant 2 invoice 7 has 2 different items
+    #@item6, quantity 10, price 1000 = 10000
+    #@item11, quantity 15, price 500 = 7500
+  #@item11 is the only one available for this discount new revenue is = 6750
+
+  #total revenue no discount = 17500
+  #total revenue with discount = 16750
+
   @init1 = create(:invoice_item, item: @item6, invoice: @invoice7, unit_price: 1000, quantity: 10)
   @init2 = create(:invoice_item, item: @item7, invoice: @invoice8, unit_price: 10000, quantity: 1000)
   @init3 = create(:invoice_item, item: @item8, invoice: @invoice9, unit_price: 1000, quantity: 100)
