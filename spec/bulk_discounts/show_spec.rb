@@ -19,5 +19,15 @@ RSpec.describe 'bulk_discounts/:id', type: :feature do
       expect(page).to have_content("Quantity Threshold: #{@discount2.quantity_threshold}")
       expect(page).to have_content("Percent Discount: 20%")
     end
+
+    it 'I see a button to edit the bulk discount record, when clicked I am taken to the edit page' do
+      visit bulk_discount_path(@discount1)
+
+      expect(page).to have_button('Edit')
+
+      click_button('Edit')
+
+      expect(current_path).to eq(edit_bulk_discount_path(@discount1))
+    end
   end
 end

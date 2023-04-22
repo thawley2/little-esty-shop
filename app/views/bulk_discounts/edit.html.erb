@@ -1,6 +1,6 @@
-<h1><%= @merchant.name %> New Discount</h1>
+<h1>Edit <%= @discount.name %> Discount</h1>
 
-<%= form_with model: [@merchant, @discount], local: true do |f| %>
+<%= form_with model: @discount, local: true do |f| %>
   <%= f.label :name, "Discount Name" %>
   <p><%= f.text_field :name %></p>
   <%= f.label :percent_discount, "Percent Discount range:(0.05-1.00)" %>
