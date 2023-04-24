@@ -166,6 +166,7 @@ def merchant3_test_data
   @tran13 = create(:transaction, result: 'success', invoice: @invoice7)
   
   @discount1 = create(:bulk_discount, percent_discount: 0.10, quantity_threshold: 15, merchant: @merchant2)
+  
   #merchant 2 invoice 7 has 2 different items
     #@item6, quantity 10, price 1000 = 10000
     #@item11, quantity 15, price 500 = 7500
