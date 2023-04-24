@@ -36,6 +36,7 @@ RSpec.describe Invoice, type: :model do
     it 'returns the total revenue of an invoice including any discounts' do
       merchant3_test_data
       expect(@invoice7.inv_total_rev_discs(@merchant2.id)).to eq(16750)
+      expect(@invoice7.inv_total_rev_discs(@merchant3.id)).to eq(0)
     end
 
     it 'if an invoice item qualifies for two discounts it applies the highest percentage' do
