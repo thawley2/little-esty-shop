@@ -60,6 +60,14 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       expect(page).to have_content("Total Revenue With Discounts: $167.50")
 
     end
+
+    it 'Shows the original revenue if no discounts were applied' do
+      merchant3_test_data
+      visit merchant_invoice_path(@merchant3, @invoice7)
+
+      expect(page).to have_content("Total Revenue: $131.00")
+      expect(page).to have_content("Total Revenue With Discounts: $131.00")
+    end
   end
 
   describe "I see that each invoice item status is a select field with it's current status selected" do
