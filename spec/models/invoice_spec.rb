@@ -31,4 +31,17 @@ RSpec.describe Invoice, type: :model do
       expect(@invoice1.total_revenue).to eq(7500)
     end
   end
+
+  describe '#inv_total_rev_discs' do
+    it 'returns the total revenue of an invoice including any discounts' do
+      merchant3_test_data
+      expect(@invoice7.inv_total_rev_discs(@merchant2.id)).to eq(16750)
+    end
+
+    it 'if an invoice item qualifies for two discounts it applies the highest percentage' do
+      merchant3_test_data
+      @discount2 = create(:bulk_discount, percent_discount: 0.20, quantity_threshold: 10, merchant: @merchant2)
+      expect(@invoice7.inv_total_rev_discs(@merchant2.id)).to eq(14000)
+    end
+  end
 end
