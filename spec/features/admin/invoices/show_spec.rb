@@ -28,6 +28,15 @@ RSpec.describe 'Invoice Index' do
       expect(page).to have_content("Total Revenue: #{@invoice1.total_revenue}")
     end
 
+    it 'I see the total revenue of all the invoice items for that invoice with the discount applied' do
+      merchant3_test_data
+      @discount2 = create(:bulk_discount, percent_discount: 0.20, quantity_threshold: 10, merchant: @merchant2)
+
+      visit admin_invoice_path(@invoice7)
+      expect(page).to have_content('Total Revenue: 30625')
+      expect(page).to have_content('Total Revenue with Discounts: 27125')
+    end
+
     it "I see that each invoice status is a select field with it's current status selected and can change status of an invoice" do
       test_data
       visit admin_invoice_path(@invoice1)
