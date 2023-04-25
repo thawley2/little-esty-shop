@@ -50,6 +50,7 @@ group :development, :test do
   gem 'faker'
   gem 'factory_bot_rails'
   gem 'httparty'
+  gem 'hirb'
 end
 
 group :development do
