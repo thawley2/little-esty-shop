@@ -1,16 +1,13 @@
 class Merchants::BulkDiscountsController < ApplicationController
-# before_action :find_merchant, only: [:create]
+before_action :find_merchant
   def index
-    @merchant = Merchant.find(params[:merchant_id])
   end
 
   def new
-    @merchant = Merchant.find(params[:merchant_id])
     @discount = BulkDiscount.new
   end
 
   def create
-    @merchant = Merchant.find(params[:merchant_id])
     @discount = @merchant.bulk_discounts.new(bulk_discount_params)
     if @discount.save
       redirect_to merchant_bulk_discounts_path(@merchant)
@@ -22,10 +19,15 @@ class Merchants::BulkDiscountsController < ApplicationController
 
   def destroy
     BulkDiscount.find(params[:id]).destroy
-    redirect_to merchant_bulk_discounts_path(params[:merchant_id])
+    redirect_to merchant_bulk_discounts_path(@merchant)
   end
 
+private
   def bulk_discount_params
     params.require(:bulk_discount).permit(:name, :percent_discount, :quantity_threshold)
+  end
+
+  def find_merchant
+    @merchant = Merchant.find(params[:merchant_id])
   end
 end
