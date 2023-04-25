@@ -48,6 +48,7 @@ tr:nth-child(even) {
       <td><%= invitm.name %></td>
       <td><%= invitm.quantity %></td>
       <td><%= invitm.unit_price %></td>
+      <td><%= invitm.applied_discount %>
       <td id='invitm'><%= form_with model: [@merchant, invitm], local: true do |f| %>
         <%= f.label :status, hidden: true%>
         <%= f.select :status, ['packaged', 'pending', 'shipped'], selected: invitm.status %>
