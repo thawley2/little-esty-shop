@@ -8,7 +8,8 @@
         <% end %></p>
   <p>Date: <%= @invoice.format_date %></p>
   <p>Customer: <%= @invoice.customer.full_name %></p>
-  <p>Total Revenue: <%= @invoice.total_revenue %>
+  <p>Total Revenue: <%= @invoice.total_revenue %></p>
+  <p>Total Revenue with Discounts: <%= @invoice.total_discount_revenue %></p>
 </div>
 <h3>Invoice Items</h3>
 <div class="invoice_items">

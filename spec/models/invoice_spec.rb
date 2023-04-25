@@ -33,7 +33,7 @@ RSpec.describe Invoice, type: :model do
   end
 
   describe '#inv_total_rev_discs' do
-    it 'returns the total revenue of an invoice including any discounts' do
+    it 'returns total revenue from an invoice when a merchant has bulk discounts' do
       merchant3_test_data
       expect(@invoice7.inv_total_rev_discs(@merchant2.id)).to eq(16750)
       expect(@invoice7.inv_total_rev_discs(@merchant3.id)).to eq(0)
@@ -43,6 +43,32 @@ RSpec.describe Invoice, type: :model do
       merchant3_test_data
       @discount2 = create(:bulk_discount, percent_discount: 0.20, quantity_threshold: 10, merchant: @merchant2)
       expect(@invoice7.inv_total_rev_discs(@merchant2.id)).to eq(14000)
+    end
+  end
+
+  describe '#total_revenue_merchant_discount' do
+    it 'returns the total revenue with discounts applied to the whole invoice only to the merchant invoice items with bulk discounts' do
+      merchant3_test_data
+      @discount2 = create(:bulk_discount, percent_discount: 0.20, quantity_threshold: 10, merchant: @merchant2)
+      @discount3 = create(:bulk_discount, percent_discount: 0.20, quantity_threshold: 30, merchant: @merchant3)
+      
+      expect(@invoice7.total_revenue_merchant_discount).to eq(27125)
+    end
+  end
+
+  describe '#total_revenue_merchant_no_discount' do
+    it 'returns the total revenue of merchants that do not' do
+      merchant3_test_data
+      @discount2 = create(:bulk_discount, percent_discount: 0.20, quantity_threshold: 10, merchant: @merchant2)
+
+      expect(@invoice7.total_revenue_merchant_no_discount).to eq(13125)
+    end
+
+    it '#total_total_total' do
+      merchant3_test_data
+      @discount2 = create(:bulk_discount, percent_discount: 0.20, quantity_threshold: 10, merchant: @merchant2)
+
+      expect(@invoice7.total_discount_revenue).to eq(27125)
     end
   end
 end
