@@ -94,5 +94,35 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
         expect(page).to have_selector("#invitm", text: 'shipped')
       end
     end
+
+    describe 'If a discount was applied to that invoice item' do
+      it 'I see a link to that discounts show page or a message with no discount applied' do
+
+        merchant3_test_data
+        @discount2 = create(:bulk_discount, percent_discount: 0.20, quantity_threshold: 10, merchant: @merchant2)
+        @init20 = create(:invoice_item, item: @item8, invoice: @invoice7, unit_price: 500, quantity: 5)
+        visit merchant_invoice_path(@merchant2, @invoice7)
+        
+        within "#item_#{@init1.id}" do
+          expect(page).to have_link('View Discount')
+          click_link('View Discount')
+          expect(current_path).to eq(bulk_discount_path(@discount2))
+        end
+
+        visit merchant_invoice_path(@merchant2, @invoice7)
+
+        within "#item_#{@init8.id}" do
+          expect(page).to have_link('View Discount')
+          click_link('View Discount')
+          expect(current_path).to eq(bulk_discount_path(@discount2))
+        end
+        
+        visit merchant_invoice_path(@merchant2, @invoice7)
+
+        within "#item_#{@init20.id}" do
+          expect(page).to have_content('No Discount Applied')
+        end
+      end
+    end
   end
 end
