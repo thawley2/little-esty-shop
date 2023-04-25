@@ -136,6 +136,7 @@ def merchant3_test_data
   @item10 = create(:item, merchant: @merchant2)
   @item11 = create(:item, merchant: @merchant2)
   @item12 = create(:item, merchant: @merchant3)
+  @item13 = create(:item, merchant: @merchant4)
 
   @customer7 = create(:customer)
   @customer8 = create(:customer)
@@ -185,6 +186,7 @@ def merchant3_test_data
   @init8 = create(:invoice_item, item: @item11, invoice: @invoice7, unit_price: 500, quantity: 15)
   @init9 = create(:invoice_item, item: @item11, invoice: @invoice9, unit_price: 525, quantity: 25)
   @init10 = create(:invoice_item, item: @item12, invoice: @invoice7, unit_price: 525, quantity: 25)
+  # @init11 = create(:invoice_item, item: @item13, invoice: @invoice7, unit_price: 1, quantity: 15)
 end
 
 # item11, item8, item6, item9, item12
