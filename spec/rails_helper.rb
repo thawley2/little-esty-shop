@@ -125,8 +125,8 @@ def create_invoice_items_and_transactions(merchant, revenue)
 end
 
 def merchant3_test_data
-  @merchant2 = create(:merchant)
-  @merchant3 = create(:merchant)
+  @merchant2 = create(:merchant, active_discount: true)
+  @merchant3 = create(:merchant, active_discount: false)
   @merchant4 = create(:merchant)
 
   @item6 = create(:item, merchant: @merchant2)
