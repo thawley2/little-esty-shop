@@ -11,6 +11,7 @@ before_action :find_merchant
   def create
     @discount = @merchant.bulk_discounts.new(bulk_discount_params)
     if @discount.save
+      @merchant.update(active_discount: true)
       redirect_to merchant_bulk_discounts_path(@merchant)
     else
       flash[:error] = 'Please fill out all required fields'
@@ -20,6 +21,9 @@ before_action :find_merchant
 
   def destroy
     BulkDiscount.find(params[:id]).destroy
+    if @merchant.bulk_discounts.empty?
+      @merchant.update(active_discount: false)
+    end
     redirect_to merchant_bulk_discounts_path(@merchant)
   end
 
