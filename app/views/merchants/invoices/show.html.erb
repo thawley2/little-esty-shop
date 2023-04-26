@@ -23,7 +23,7 @@ tr:nth-child(even) {
 <p>Status: <%= @invoice.status %></p>
 <p>Created on: <%= @invoice.created_at.strftime("%B/%d/%Y") %>
 
-<p>Total Revenue: <%= number_to_currency(@merchant.inv_total_rev(@invoice.id)/100) %><p>
+<p>Total Revenue: <%= number_to_currency(@merchant.inv_total_rev(@invoice.id).to_f/100) %><p>
 <p>Total Revenue With Discounts: 
 <% if @merchant.bulk_discounts.empty? %>
   <%= number_to_currency(@merchant.inv_total_rev(@invoice.id)/100) %>
