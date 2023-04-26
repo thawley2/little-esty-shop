@@ -1,5 +1,12 @@
 <h1><%= @merchant.name %> Discounts</h1>
 
+<h2>Upcoming Holidays</h2>
+<ul>
+<% @holidays.each do |holiday| %>
+  <p><%= holiday.name %> <%= holiday.date %></p>
+<% end %>
+</ul>
+
 <h2>List of all active discounts</h2>
 
 <% @merchant.bulk_discounts.each do |discount| %>

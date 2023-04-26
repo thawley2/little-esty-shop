@@ -71,5 +71,18 @@ RSpec.describe '/merchants/:id/bulk_discounts#index', type: :feature do
       end
       expect(page).to_not have_link(@discount1.name)
     end
+
+    it 'I see a list of the next three upcoming holidays' do
+      holidays = HolidayFacade.new.holiday_info
+      visit merchant_bulk_discounts_path(@merchant)
+
+      expect(page).to have_content('Upcoming Holidays')
+      expect(page).to have_content(holidays[0].name)
+      expect(page).to have_content(holidays[0].date).once
+      expect(page).to have_content(holidays[1].name).once
+      expect(page).to have_content(holidays[1].date).once
+      expect(page).to have_content(holidays[2].name).once
+      expect(page).to have_content(holidays[2].date).once
+    end
   end
 end
