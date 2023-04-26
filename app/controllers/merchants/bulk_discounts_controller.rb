@@ -1,6 +1,7 @@
 class Merchants::BulkDiscountsController < ApplicationController
 before_action :find_merchant
   def index
+    @holidays = HolidayFacade.new.holiday_info
   end
 
   def new
