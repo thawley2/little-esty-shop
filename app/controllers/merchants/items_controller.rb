@@ -6,7 +6,7 @@ class Merchants::ItemsController < ApplicationController
   def show
     @merchant = Merchant.find(params[:merchant_id])
     @item = Item.find(params[:id])
-    @item_image = ItemSearch.item_info(@item.name)
+    # @item_image = ItemSearch.item_info(@item.name)
   end
 
   def edit
