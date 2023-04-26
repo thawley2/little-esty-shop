@@ -2,6 +2,7 @@ class BulkDiscountsController < ApplicationController
 before_action :find_discount
 
   def show
+    @merchant = @discount.merchant
   end
 
   def edit

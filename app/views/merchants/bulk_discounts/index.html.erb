@@ -1,5 +1,5 @@
 <h1><%= @merchant.name %> Discounts</h1>
-
+<%= render partial: '/merchants/header', locals: {merchant: @merchant.name, merchant_id: @merchant.id} %>
 <h2>Upcoming Holidays</h2>
 <ul>
 <% @holidays.each do |holiday| %>

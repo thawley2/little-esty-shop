@@ -1,4 +1,6 @@
 <h1><%= @discount.name %> discount</h1>
+<%= render partial: '/merchants/header', locals: {merchant: @merchant.name, merchant_id: @merchant.id} %>
+
 <h2> Quantity Threshold: <%= @discount.quantity_threshold %></h2>
 <h2> Percent Discount: <%= (@discount.percent_discount * 100).to_i %>%</h2>
 <%= button_to 'Edit', edit_bulk_discount_path(@discount), method: :get %>

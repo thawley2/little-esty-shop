@@ -65,8 +65,8 @@ RSpec.describe '/merchants/merchant_id/invoices/invoice_id)', type: :feature do
       merchant3_test_data
       visit merchant_invoice_path(@merchant3, @invoice7)
 
-      expect(page).to have_content("Total Revenue: $131.00")
-      expect(page).to have_content("Total Revenue With Discounts: $131.00")
+      expect(page).to have_content("Total Revenue: $131.25")
+      expect(page).to have_content("Total Revenue With Discounts: $131.25")
     end
   end
 
