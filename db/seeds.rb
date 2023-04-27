@@ -10,6 +10,7 @@ InvoiceItem.destroy_all
 Transaction.destroy_all
 Invoice.destroy_all
 Item.destroy_all
+BulkDiscount.destroy_all
 Merchant.destroy_all
 Customer.destroy_all
 system("rails csv_load:all")

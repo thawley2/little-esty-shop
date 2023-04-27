@@ -68,6 +68,7 @@ RSpec.describe '/merchants/:id/bulk_discounts#index', type: :feature do
         click_button 'Delete Discount'
 
         expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
+        expect(@merchant.active_discount).to eq(false)
       end
       expect(page).to_not have_link(@discount1.name)
     end
